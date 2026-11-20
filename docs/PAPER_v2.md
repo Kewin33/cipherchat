@@ -1,6 +1,6 @@
 # CipherChat v2: Slot-gesättigte CKKS-Inferenz und generalisierende Arithmetik für einen verschlüsselten Chatbot
 
-Stand 20.11.2026 · Code: `cipherchat/v2/`, Messlog: `docs/RESEARCH_LOG.md` · Messrechner: Intel Core Ultra 9 285K (8 P- + 16 E-Kerne), RTX 5080, OpenFHE 1.6.1
+Stand 20.11.2026 (Abschnitt 9 erweitert) · Code: `cipherchat/v2/`, Messlog: `docs/RESEARCH_LOG.md` · Messrechner: Intel Core Ultra 9 285K (8 P- + 16 E-Kerne), RTX 5080, OpenFHE 1.6.1
 
 ## Kurzfassung
 
@@ -204,17 +204,202 @@ Drei verallgemeinerbare Lehren:
 - Unverändert offen: Längen-Leakage (Abhilfe: Padding/Dummy-Tokens), volle Logits beim Client (Modell-IP; Abhilfe: homomorphes Top-k kostet Tiefe), CKKS-IND-CPA^D (Li & Micciancio 2021) – der Client sendet nie entschlüsselte Werte zurück, nur neu verschlüsselte Tokens.
 - Speculative Decoding würde ohne Gegenmaßnahme die Akzeptanzlänge offenlegen (§7).
 
-## 9. Roadmap zur Chat-Fähigkeit („GPT-4-Klasse kommt später“)
+## 9. Der Weg zur GPT-4-Klasse: Was skaliert, was bricht, was hilft
 
-Was skaliert aus v2 mit:
+**Leitthese.** Unter FHE skaliert der Rechenaufwand wie im Klartext – linear in den ausgewerteten Parametern –, nur mit einem Faktor von etwa 10³–10⁴. Daran allein scheitert der Weg zur GPT-4-Klasse nicht. Kritisch sind Dinge, die im Klartext keine oder eine kleine Rolle spielen: der Speicher der verschlüsselungsbereiten Gewichte, Tiefe und Bootstrapping, die Nichtlinearitäten vortrainierter LLMs, Sparsity (MoE), die unter FHE nicht ohne Leakage funktioniert, und die Kommunikation pro Token. Dieser Abschnitt quantifiziert jedes Problem, ordnet die vorhandene Forschung ein und schlägt eigene Lösungsideen vor. Er ist als Arbeitsprogramm für Folgepaper gedacht; alle Zahlen außer Stufe A sind Schätzungen aus einem Kostenmodell (§9.2), nicht Messungen.
 
-- **Breite.** Für d = 64·b (b Blöcke) wird jede Matvec zur b×b-Blockmatvec (PtMults ∝ d², Rotationen ∝ √d mit BSGS). Slot-Sättigung bleibt anwendbar, solange die Ausgaben in 8.192 (bzw. bei N = 2¹⁶: 32.768) Slots passen.
-- **Tiefe.** 4 Level pro Layer; ab 3 Layern N = 2¹⁵/2¹⁶ oder Bootstrapping (CPU: Sekunden; GPU: ~0,1 s mit FIDESlib/Cheddar-Klasse). Die Reserve-Level-Idee reduziert den Bedarf, weil MLP-Pfade nicht verlängert werden müssen.
-- **Vokabular.** Ausgabe: Logits über 32k Tokens = 4 Ciphertexts (eine Slot-gesättigte Matvec pro Ciphertext). Eingabe: **faktorisiertes Multi-Hot** (Token-ID = (hi, lo) mit je ≤ 181 Werten) passt in einen Ciphertext; Layer 0 bleibt linear.
-- **Hardware.** FIDESlib/Phantom: ~1,1 ms pro Rotation bei N = 2¹⁶, 30 Limbs auf einer RTX 4090. Hochgerechnet auf unsere Parameter (N = 2¹⁴, 9 Limbs) **~10–20 ms pro Token** auf einer RTX-4090/5080-Klasse – eine Projektion, nicht gemessen.
-- **Modell.** Distillation eines 10–50M-Parameter-Chatmodells (deutsch, TinyStories/Phi-artige Daten) in die v2-Architektur; Ziel: 4–6 Layer, d = 256–512, Bootstrapping auf GPU. Zum Vergleich: Llama-3-8B unter CKKS braucht heute 18 s/Token auf 8 GPUs (Park et al. 2026).
+### 9.1 Größenordnungen
 
-Nächste konkrete Schritte: (1) GPU-Backend für die bestehende Engine-Schnittstelle (`OpenFHEBackend` → FIDESlib), (2) mehrere Sessions gleichzeitig, (3) Batched Prefill über das blockdiagonale Layout, (4) Distillation eines größeren Chatmodells, (5) Speculative Decoding mit Leakage-freiem Commit.
+| Stufe | Modellform | Parameter ausgewertet / gespeichert | PtMults pro Token | Rotationen pro Token | Bootstraps pro Token | Plaintext-Gewichte | Zeit pro Token |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| A (gemessen) | CipherChat v2: d = 64, 2 Layer, Hidden 2.048, 59 Zeichen | 0,43 M | 576 | 99 | 0 | 0,35 GB | 0,34 s auf 8 CPU-Kernen; GPU-Projektion ~10–20 ms |
+| B | Domänen-Assistent: d = 256, 6 Layer, BPE 8k | 8 M | ~250 | ~600 | 3 | unter 1 GB | ~0,6 s (1 GPU) |
+| C | GPT-2-small-Klasse: d = 768, 12 Layer, 32k Vokabular | 0,14 B | ~4.200 | ~4.900 | 5 | ~70 GB | ~5 s (1 GPU) |
+| D | 1B (Form von Llama-3.2-1B) | 1,2 B | ~38.000 | ~9.900 | 6 | ~0,6 TB | ~11–14 s (1 GPU) |
+| E | 8B (Form von Llama-3-8B) | 7,5 B | ~230.000 | ~25.000 | 12 | ~3,7 TB | ~32–55 s (1 GPU) |
+| F1 | Frontier-MoE (Form von DeepSeek-V3), nur aktive Experten | 33 B / 671 B | ~1,0 Mio. | ~200.000 | 23 | ~330 TB | ~4–6 min (1 GPU) |
+| F2 | dieselbe MoE, alle Experten dicht (kein Routing-Leakage) | 700 B / 671 B | ~21 Mio. | ~300.000 | 23 | ~330 TB | ~19–55 min (1 GPU) |
+
+Einordnung: Für 8B berichtet die Literatur 18 s pro Token auf 8 GPUs (Park et al. 2026) und 97 s auf einer GPU (Cachemir 2026) – beide mit Approximationen von Softmax und LayerNorm, also nicht FHE-nativ. Die Größe von GPT-4 ist nicht offengelegt; offene Modelle dieser Klasse haben 10¹¹–10¹² Parameter (Llama-3.1-405B dicht, DeepSeek-V3 mit 671B gesamt und 37B aktiv). Von Stufe A bis Stufe F liegen also fünf bis sechs Größenordnungen.
+
+Annahmen (`scripts/scaling_estimate.py`): N = 2¹⁶ mit 32.768 Slots; volle Slot-Auslastung in den linearen Schichten (Packing wie bei Cachemir oder unser generalisiertes BSGS); FHE-native Layer wie in v2 mit ≈ 4,5 Level pro Layer und ~12 nutzbaren Leveln zwischen zwei Bootstraps; GPU-Kosten pro Operation auf RTX-4090/5090-Niveau: Rotation 0,8 ms, ct×ct 1,0 ms, PtMult 0,04 ms, Bootstrapping 20 ms (FIDESlib; Theodosian misst 12,8–22 ms auf einer RTX 5090), Encode eines Gewichts-Plaintexts 0,1 ms. Die Spanne der Zeiten reicht von „alle Gewichts-Plaintexts im Speicher“ bis „Gewichte werden pro Token neu encodiert“.
+
+### 9.2 Kostenmodell
+
+$$
+T_{\text{Token}} \approx R\,c_{\text{rot}} + C\,c_{\text{ct}} + P\,c_{\text{pt}} + B\,c_{\text{bts}} \;\big(+\,P\,c_{\text{enc}}\ \text{bei gestreamten Gewichten}\big)
+$$
+
+mit P ≈ W/n (ausgewertete Gewichte geteilt durch die Slot-Zahl), R ≈ Σ über alle Matvecs 2√(W_i/n) plus 12·L·⌈T·d_kv/n⌉ für die Attention, C ≈ 2·L·⌈T·d_kv/n⌉ und B ≈ ⌈L·ℓ/ℓ_bts⌉ (L Layer, ℓ Level pro Layer, ℓ_bts nutzbare Level pro Bootstrap, T Kontextlänge). Daraus folgen fünf Skalierungsgesetze:
+
+1. **Plaintext-Multiplikationen wachsen linear in den Parametern** – genau wie Klartext-FLOPs; nur die Konstante unterscheidet sich.
+2. **Rotationen wachsen mit der Wurzel der Matrixgröße** (BSGS). Bei kleinen Modellen dominieren Rotationen (v2: nach Kostenmodell etwa zwei Drittel der Zeit), bei großen wieder die Plaintext-Multiplikationen und der Gewichtsspeicher.
+3. **Kontext ist gratis, solange der KV-Cache in einen Ciphertext passt** (v2: 64 Tokens; bei N = 2¹⁶ und d_kv = 64 bis 512 Tokens). Danach wächst er linear in T·d_kv/n – wie im Klartext.
+4. **Bootstraps hängen an der Tiefe pro Layer.** FHE-native Layer brauchen ℓ ≈ 4–5 Level, vortrainierte LLMs mit Approximationen von Softmax, Norm und SiLU nach unserer Abschätzung 10–20. Das ist ein Faktor 2–4 bei den Bootstraps.
+5. **Der Plaintext-Speicher wächst linear in den Parametern mit ~500 Byte pro Gewicht** (16 MB pro 32.768 Gewichte bei vollem Level, 250-mal fp16). In v2 messen wir ~800 Byte pro Parameter (346 MB für 428k Parameter); Cachemir berichtet für Llama-3-8B „hunderte GB“ Gewichts-Plaintexts gegenüber 17 GB KV-Cache.
+
+### 9.3 Was gut skaliert
+
+- **Breite bis zur Slot-Grenze ist gratis.** Gemessen: Hidden 1.024 → 8.192 kostet 12 % mehr Zeit. Kleine und mittlere Modelle sollten deshalb breit und flach sein.
+- **Lineare Algebra skaliert asymptotisch wie im Klartext** (Gesetz 1). Mit vollem Packing (MOAI, Cachemir, unser generalisiertes BSGS) geht kaum Slot-Kapazität verloren.
+- **Der gepackte KV-Cache** hat konstante Kosten pro Token, solange T·d_kv ≤ n.
+- **FHE-native Bausteine sind trainierbar.** Polynomielle Attention ab Grad 4 erreicht in Sprachmodell-Experimenten die Qualität von Softmax (PolySketchFormer); Softmax-Attention lässt sich selbst bei Llama-3.1-405B per Attention-Transfer und LoRA in eine andere Attention-Form überführen und schließt dabei den größten Teil der MMLU-Lücke (LoLCATs); norm-freies Training mit ReZero-Gains und gegatetem MLP funktioniert (diese Arbeit, kleine Skala).
+- **Hardware.** GPUs sind pro Rotation rund 95× schneller als OpenFHE mit 24 Threads und 335× schneller als ein CPU-Kern (FIDESlib, N = 2¹⁶), Bootstrapping kostet auf einer RTX 5090 nur noch 13–22 ms (Theodosian), FHE-ASICs wie Intel Heracles versprechen bis 5.000× gegenüber einem Xeon.
+- **Alles auf dem Client skaliert kostenlos mit:** Tokenisierung, Struktur-Annotationen, Retrieval über eigene Daten, Werkzeuge.
+
+### 9.4 Was bricht – Probleme, Stand der Forschung, eigene Ideen
+
+Überblick:
+
+| # | Problem | Größenordnung | Stand der Forschung | Eigene Idee |
+| --- | --- | --- | --- | --- |
+| P1 | Plaintext-Explosion der Gewichte | 3,7 TB (8B), 330 TB (Frontier) | Encode auf der GPU, Gewichte auf niedrigem Level | fusionierte Encode-Mult-Kernel auf quantisierten Gewichten, Gewichts-Batching über Nutzer, strukturierte Layer |
+| P2 | Tiefe und Bootstrapping | 6–23 Bootstraps pro Token | GPU-Bootstrapping in 13–22 ms; Platzierung (Orion, Cachemir, AutoFHE) | level-balancierte Architekturen, Client-gestütztes Refresh |
+| P3 | Nichtlinearitäten vortrainierter LLMs | 10–20 Level pro Layer, Ausreißer bis 10³ | Approximationen (MOAI, Park et al.), Ersatzkerne (Powerformer, Rho et al.) | Distillations-Curriculum in FHE-native Schüler, Rotationen gegen Ausreißer |
+| P4 | Lineare Schichten, wenn d die Slots füllt | ~230.000 PtMults pro Token (8B) | Packing (THOR, MOAI, Cachemir), block-zirkulante Gewichte (PrivCirNet) | Monarch-Layer als FHE-native Linearschicht |
+| P5 | MoE und Sparsity | dicht ~20× teurer; Routing verrät bis 91 % der Tokens | CryptoMoE (balanciertes Routing, HE+MPC) | Slot-MoE (klein), Sitzungs-Routing mit Leakage-Budget (groß) |
+| P6 | Langer Kontext | linear in T·d_kv/n | KV-Packing (Cachemir), Klartext-Kompression (StreamingLLM) | Client als Kontext-Manager, öffentliche Präfixe als Klartext-KV |
+| P7 | Vokabular, Sampling, Rundreisen | 128k Logits = 4 Ciphertexts, 1 Rundreise pro Token | Client-Argmax, homomorphes Argmax (NEXUS), Drafts bei 2PC (POST) | faktorisierter Multi-Hot-Input, Client-Drafts, weiche Token-Rückkopplung |
+| P8 | Kommunikation und Schlüssel | Keys im GB-Bereich, 10–20 MB Upload pro Token | hierarchische Rotations-Keys, Transciphering (HERA, Rubato, AES→CKKS) | Transciphering des Two-Hot-Inputs, Keys aus dem statischen Level-Plan |
+| P9 | Qualität FHE-nativer Modelle | ab ~100M unerforscht | PolySketchFormer, Rho et al., LoLCATs | Skalierungsgesetze messen, Client-Werkzeuge entlasten das Modell |
+| P10 | Betrieb und Kosten | eigene Keys pro Nutzer, kein Slot-Batching über Nutzer | kaum Literatur | Gewichts-Batching als Hebel für €/Token |
+
+#### P1 · Plaintext-Explosion der Gewichte
+
+**Problem.** Jede Plaintext-Multiplikation braucht die Gewichte in RNS-NTT-Form auf dem Level des Ciphertexts: N × Limbs × 8 Byte. Bei N = 2¹⁶ und ~30 Limbs sind das 16 MB für 32.768 Gewichte. Ein 8B-Modell braucht so ~3,7 TB, eine Frontier-MoE ~330 TB; GPUs haben 16–80 GB. Die Alternative, die Gewichte kompakt zu halten und pro Token neu zu encodieren, kostet bei 8B rund 230.000 Encodes pro Token, also ~23 s zusätzlich (Annahme 0,1 ms pro Encode). Dieses Problem existiert im Klartext nicht: Dort belegt ein Gewicht 1–2 Byte.
+
+**Stand der Forschung.** Cachemir misst das Problem (hunderte GB für Llama-3-8B) und erwartet, dass es bei größeren Modellen dominiert; Encoding auf der GPU und Gewichte auf dem niedrigsten nötigen Level mildern es. Eine grundsätzliche Lösung ist uns nicht bekannt.
+
+**Eigene Ideen.**
+
+- **Fusionierte Encode-Mult-Kernel.** Gewichte bleiben als 8-Bit-Werte im Slot-Raum gespeichert (1 Byte pro Gewicht, 8 GB für 8B), FFT und NTT laufen direkt im Multiplikations-Kernel. Speicher wie ein int8-LLM, Mehraufwand ≈ eine NTT pro Limb und Plaintext.
+- **Gewichts-Batching über Nutzer.** Die Plaintexts sind für alle Nutzer gleich – nur die Ciphertexts unterscheiden sich. Werden B Nutzer gleichzeitig bedient, amortisieren sich Encodieren und Streamen über B, genau wie Klartext-LLMs ihre Gewichte pro Batch nur einmal laden. Das verschiebt FHE-Inferenz vom Latenz- ins Durchsatz-Regime und ist vermutlich der wichtigste Hebel für die Kosten pro Token.
+- **Strukturierte Gewichte** (P4) reduzieren die Zahl der Gewichte um ~√d.
+- **Linearschichten spät in der Bootstrapping-Periode.** Auf niedrigen Leveln haben Plaintexts wenige Limbs (v2: Layer-1-Plaintexts sind ~2× kleiner als Layer-0). Platzierungs-Algorithmen wie Orion oder Cachemir optimieren bisher die Bootstraps; der Gewichtsspeicher sollte ein zweites Optimierungsziel werden.
+
+#### P2 · Tiefe und Bootstrapping
+
+**Problem.** 4–5 Level pro FHE-nativem Layer (geschätzt 10–20 bei vortrainierten LLMs) bedeuten bei 12–60 Layern 6–23 Bootstraps pro Token; auf einer CPU kostet jedes Bootstrapping Sekunden.
+
+**Stand der Forschung.** GPU-Bootstrapping in 13–22 ms (Theodosian, RTX 5090); optimierte Platzierung (Orion; Cachemir mit Bootstrapping innerhalb nichtlinearer Schichten, 1,98× weniger Bootstrapping-Latenz; AutoFHE optimiert Polynomgrad und Platzierung gemeinsam).
+
+**Eigene Ideen.**
+
+- **Level-balancierte Architekturen.** Unser Ergebnis zum Reserve-Level verallgemeinert sich zu einer Entwurfsregel: Alle parallelen Pfade eines Blocks verbrauchen dieselbe Tiefe; was ein Pfad nicht braucht, wird für höhere Polynomgrade genutzt (Gates, Experten-Mischung). Eine Architektursuche mit dem Level-Budget als harter Nebenbedingung, wie AutoFHE sie für CNNs macht, fehlt für Transformer.
+- **Client-gestütztes Refresh statt Bootstrapping.** Der Server addiert eine zufällige Maske r (gleichverteilt modulo q) zum Ciphertext, der Client entschlüsselt x + r, verschlüsselt neu auf vollem Level und schickt zurück; der Server zieht r ab. Das ist die Zwei-Parteien-Variante des kollektiven Bootstrappings aus der Multiparty-HE (Mouchet et al., PoPETs 2021). Kosten: eine Rundreise und ein Ciphertext pro Refresh (MB-Bereich) statt eines Bootstrappings. Anders als hybride HE/MPC-Protokolle (BOLT braucht 59,6 GB Kommunikation für eine BERT-base-Inferenz) bleiben die Nichtlinearitäten polynomiell; erneuert wird nur das Rauschbudget. Das lohnt sich, wo Server-Rechenzeit teuer ist (CPU-Server) oder viele Bootstraps anfallen. Offen sind die Sicherheitsanalyse (Maskenverteilung, Präzision, Bezug zu IND-CPA^D) und die Latenz bei vielen Refreshes pro Token.
+- **Bootstrapping mit Nutzlast.** CKKS-Bootstrapping enthält selbst zwei lineare Transformationen (CoeffToSlot, SlotToCoeff). Lineare Modellschichten in diese Transformationen hineinzufalten, spart Matvecs und Level – zu prüfen.
+
+#### P3 · Nichtlinearitäten vortrainierter LLMs
+
+**Problem.** Softmax (Exponentialfunktion und Division), RMSNorm und LayerNorm (inverse Wurzel), SiLU und GELU brauchen hochgradige Polynome. Aktivierungsausreißer von 10³–10⁴ vergrößern den Approximationsbereich und damit Grad und Tiefe.
+
+**Stand der Forschung.** Hochgradige Approximationen mit Bereichs-Tricks (MOAI, THOR; Park et al. mit Token-Prepending und orthogonalen Rotationen gegen Ausreißer); Ersatzkerne mit Nachtraining (Powerformer mit BRPmax, Rho et al. mit Gauß-Kernel und LoRA).
+
+**Eigene Ideen.**
+
+- **„FHE-ification“ als Distillations-Curriculum.** Komponenten schrittweise ersetzen: Softmax durch polynomielle Attention (Attention-Transfer wie bei LoLCATs), Norm durch ReZero-Gains und feste Skala, SiLU-GLU durch ((xW₁)⊙(xW_g))², relative Biases statt RoPE – und nach jedem Schritt mit LoRA nachtrainieren. LoLCATs zeigt, dass solche Umbauten der Attention bis 405B Parameter funktionieren.
+- **Rotationen gegen Ausreißer** aus der Quantisierung (QuaRot, SpinQuant: Hadamard- bzw. gelernte Rotationen glätten die Aktivierungen) verkleinern den Wertebereich und damit Polynomgrad und Präzisionsbedarf. Rotationen sind linear und lassen sich in die Gewichte falten – unter FHE also gratis.
+- **Wertebereichs-Regularisierung im Training**, wie unser Logit-Penalty: Kleine Aktivierungen (v2: max |x| = 19) senken den CKKS-Fehler und erlauben kleinere Skalierungen.
+
+#### P4 · Lineare Schichten, wenn die Slots voll sind
+
+**Problem.** Ab d ≈ n/2 ist Breite nicht mehr gratis. Ein 8B-Modell braucht ~230.000 Plaintext-Multiplikationen pro Token.
+
+**Stand der Forschung.** Optimale Packings (THOR, MOAI, Cachemir); block-zirkulante Gewichte (PrivCirNet, NeurIPS 2024: die Matvec wird zur eindimensionalen Faltung, der HE-Aufwand sinkt proportional zur Blockgröße, 1,3–5× schneller als BOLT); SVD-Kompression (Euston – mit Leakage laut „Breaking Euston“).
+
+**Eigene Idee: Monarch-Layer als FHE-native Linearschicht.** Eine Monarch-Matrix M = P L Pᵀ R besteht aus zwei blockdiagonalen Faktoren mit √d Blöcken der Größe √d × √d und einer festen Permutation P (Dao et al., ICML 2022). Blockdiagonale Faktoren passen ideal zu CKKS: Alle Blöcke laufen SIMD-parallel in einer generalisierten BSGS-Matvec (wie unsere Slot-Sättigung), die Permutation ist ein festes, datenunabhängiges Rotationsmuster. Erwartung: Plaintext-Multiplikationen und Gewichtsspeicher sinken von d² auf 2d√d – bei d = 4.096 um den Faktor 32 –, bei höchstens einem zusätzlichen Level. Offen ist, wie viel Qualität strukturierte Gewichte auf LLM-Skala kosten; Monarch und block-zirkulante Gewichte sind bisher vor allem bis GPT-2- und ViT-Größe untersucht.
+
+#### P5 · Mixture-of-Experts und Sparsity
+
+**Problem.** MoE spart nur, wenn wenige Experten ausgewertet werden, und die Auswahl ist eine Verzweigung auf verschlüsselten Daten. Dicht ausgewertet ist eine Frontier-MoE ~20× teurer (Stufe F2 gegenüber F1); ein offengelegtes Routing verrät bis zu 91 % der Tokens (Nuriyev & Kulp 2026).
+
+**Stand der Forschung.** CryptoMoE (NeurIPS 2025) kombiniert HE und MPC und balanciert das Routing so, dass es weniger verrät; die dichte Referenz ist dort 8–15× teurer.
+
+**Eigene Ideen.**
+
+- **Slot-MoE** für kleine Modelle (diese Arbeit): Experten dicht in freien Slots, Gate im Reserve-Level – kein Leakage, bis zur Slot-Grenze keine Mehrkosten.
+- **Sitzungs-Routing mit Leakage-Budget** für große Modelle. Der Client wählt pro Sitzung (nicht pro Token) einen von wenigen großen Domänen-Experten, z. B. einen von 8 – also 3 Bit pro Sitzung, vergleichbar mit der Server-Namensangabe (SNI) bei TLS. Das Leakage ist klein, explizit und prüfbar; innerhalb der Domäne wird dicht gerechnet. Offen: wie viel Qualität Sitzungs-Routing gegenüber Token-Routing kostet und wie man Domänen schneidet, sodass die Wahl wenig verrät (k-Anonymität).
+
+#### P6 · Langer Kontext
+
+**Problem.** Ab T·d_kv > n wächst der Aufwand linear. Ein 128k-Kontext eines 8B-Modells (d_kv = 1.024) wären 4.000 Ciphertexts pro Layer und Cache.
+
+**Stand der Forschung.** KV-Cache-Packing mit variabler Länge (Cachemir); im Klartext Kompression wie Attention-Sinks (StreamingLLM) und Token-Auswahl (H2O).
+
+**Eigene Ideen.**
+
+- **Der Client als Kontext-Manager.** Der Client hat die ganze Konversation und seine Dokumente im Klartext. Statt eines riesigen verschlüsselten Caches schickt er pro Anfrage nur die relevanten Teile (eigenes Retrieval, eigene Zusammenfassung). Die Kontextlänge wird eine Client-Entscheidung statt einer Kostenexplosion beim Server.
+- **Öffentliche Präfixe als Klartext-KV.** System-Prompt, Few-Shot-Beispiele oder öffentliche Dokumente kennt der Server ohnehin. Er kann ihre Keys und Values im Klartext berechnen und halten; Scores dagegen sind ct×pt-Produkte (ohne Relinearisierung, nach unseren Kostenannahmen ~25× billiger als ct×ct), und das Prefill dieser Tokens kostet kein FHE. Nur die privaten Tokens laufen verschlüsselt.
+- **Hybride Langkontext-Layer:** Fenster-Attention über die letzten Tokens plus additive lineare Attention, deren Zustandsupdate S_t = S_{t−1} + φ(k_t)v_tᵀ tiefenneutral ist (nur Additionen pro Schritt).
+
+#### P7 · Vokabular, Sampling und Rundreisen
+
+**Problem.** Ein 128k-Vokabular passt als One-Hot nicht in einen Ciphertext (32.768 Slots), die Ausgabe sind 4 Logit-Ciphertexts, und pro Token ist eine Rundreise nötig (Client entschlüsselt, sampelt, verschlüsselt neu).
+
+**Stand der Forschung.** Argmax beim Client (unser Protokoll), homomorphes Argmax (NEXUS), Speculative Decoding mit öffentlichem Draft-Modell bei 2PC (POST, ICML 2025).
+
+**Eigene Ideen.**
+
+- **Faktorisierter Multi-Hot-Input.** Die Token-ID wird als (hi, lo) mit je √V Werten kodiert (2 × 358 für 128k) und passt in einen Ciphertext; Layer 0 bleibt linear (E[tok] = E_hi[hi] + E_lo[lo]). Alternativ sendet der Client direkt die Embedding-Zeile, wenn das Embedding öffentlich sein darf.
+- **Speculative Decoding mit Client-Drafts.** Der Client entwirft k Tokens mit einem kleinen lokalen Modell oder einem n-Gramm-Lookup – privat und gratis –, der Server prüft sie in einem Schritt. Gegen das Leakage der Akzeptanzlänge hilft eine feste Commit-Rate oder ein Cache-Update mit verschlüsselter Maske.
+- **Weiche Token-Rückkopplung** (Forschungsfrage): Statt eines Argmax speist der Server eine polynomiell geschärfte Verteilung als „weiches“ Embedding zurück. Das spart die Rundreise, verlangt aber ein Training auf weiche Eingaben.
+
+#### P8 · Kommunikation und Schlüssel
+
+**Problem.** Mit Bootstrapping bei N = 2¹⁶ umfassen die Eval-Keys mehrere GB pro Nutzer (ein ResNet-18-Keyset hat 115,7 GB), jeder Token-Upload ist ein voller Ciphertext (~10–20 MB).
+
+**Stand der Forschung.** Hierarchische Rotations-Keys (Lee et al., ASIACRYPT 2023: 115,7 GB → 2,91 GB, der Server leitet die übrigen Keys selbst ab); Transciphering mit HE-freundlichen Chiffren (HERA/RtF, ASIACRYPT 2021; Rubato, EUROCRYPT 2022) oder mit AES (Bae et al. 2025: unter 1 ms pro Block im Durchsatz).
+
+**Eigene Ideen.**
+
+- **Transciphering des Two-Hot-Inputs.** Der Input pro Token ist winzig (ein Token plus Struktur-Tag); mit Rubato verschlüsselt sind das Bytes statt Megabytes, der Server transcipheriert in CKKS.
+- **Keys aus dem statischen Level-Plan ableiten.** Weil der Rechenplan in v2 statisch ist (alle Plaintexts sind fest), kennt der Server vorab jeden Rotationsschritt und jedes Level. Rotations-Keys werden nur für die Level ausgestellt, auf denen sie gebraucht werden; Keys auf niedrigen Leveln sind deutlich kleiner.
+
+#### P9 · Qualität FHE-nativer Modelle
+
+**Problem.** Polynomielle Attention, fehlendes LayerNorm und quadratische bzw. GLU²-Aktivierungen sind auf großer Skala kaum untersucht; unser Nachweis gilt für 0,4M Parameter.
+
+**Stand der Forschung.** Polynomielle Attention ab Grad 4 erreicht in Sprachmodell-Experimenten die Qualität von Softmax (PolySketchFormer); FHE-freundliches Fine-Tuning mit Gauß-Kernel (Rho et al.); Attention-Umbau bis 405B (LoLCATs); kleine Modelle mit kuratierten Daten erreichen auf Benchmarks GPT-3.5-Niveau (Phi-3-mini, 3,8B Parameter).
+
+**Eigene Ideen.**
+
+- **Skalierungsgesetze FHE-nativer Architekturen messen**: 10M–1B Parameter, gleiche Daten wie ein Referenz-Transformer, Perplexity und Aufgaben-Benchmarks.
+- **Client-Werkzeuge entlasten das Modell.** Exakte Fähigkeiten wie Rechnen mit langen Zahlen, Datumsrechnung oder Nachschlagen in eigenen Daten muss das Modell nicht selbst lernen. Es erzeugt verschlüsselt einen Werkzeugaufruf, den der Client lokal ausführt (Toolformer-Prinzip). Unter FHE ist das besonders natürlich, weil der Client ohnehin jedes Token sieht, und es verrät dem Server nichts.
+
+#### P10 · Betrieb und Kosten
+
+**Problem.** Jeder Nutzer hat eigene Schlüssel; Ciphertexts verschiedener Nutzer lassen sich nicht in denselben Slots mischen. Pro Sitzung belegen Keys (GB) und KV-Cache GPU-Speicher.
+
+**Stand der Forschung.** Kaum Literatur zum Mehrnutzer-Betrieb; die SoK von Duality schlägt eine „Private LLM Card“ als Berichtsstandard vor.
+
+**Eigene Ideen.** Gewichts-Batching (P1) als Hebel für die Kosten pro Token; Keys im Host-Speicher und Layer-weises Streaming auf die GPU; Kosten pro 1.000 Tokens als Standardgröße in Veröffentlichungen.
+
+**Sicherheit im Großen.** Jede der Ideen oben, die mehr Interaktion bringt (Refresh, Speculative Decoding, Sitzungs-Routing), öffnet eine Leakage-Fläche und braucht eine eigene Analyse. IND-CPA^D bleibt relevant, sobald entschlüsselte Werte – auch maskiert – zurückfließen.
+
+### 9.5 Gestufte Roadmap
+
+| Stufe | Ziel | Kernschritte | Meilenstein bzw. Abbruchkriterium |
+| --- | --- | --- | --- |
+| B (ca. 3 Monate) | Domänen-Assistent, 5–20M Parameter | GPU-Backend (FIDESlib), Bootstrapping oder Client-Refresh, BPE mit 4–8k Tokens, Distillation aus einem kleinen LLM | höchstens 1 s pro Token auf einer GPU; Exact Match auf Zielaufgaben höchstens 2 Prozentpunkte unter dem Klartext-Modell |
+| C (6–9 Monate) | GPT-2-small-Klasse | Monarch-Layer, Distillations-Curriculum, Client als Kontext-Manager | höchstens 5 s pro Token; Perplexity höchstens 10 % über der Klartext-Referenz |
+| D (12–18 Monate) | 1–3B, „GPT-3.5-light“ | Gewichts-Streaming mit fusionierten Kerneln, Gewichts-Batching über Nutzer, mehrere GPUs | höchstens 15 s pro Token; Kosten pro 1.000 Tokens beziffert |
+| E (18–36 Monate) | 8B und mehr | FHE-Beschleuniger (Heracles-Klasse), Speculative Decoding mit Client-Drafts | Niveau von Park et al. (18 s pro Token auf 8 GPUs) auf einer GPU |
+| F (mehrjährig) | GPT-4-Klasse | ~10³-mal schnellere Hardware, √d-Gewinne durch Struktur, Sitzungs-Routing mit Leakage-Budget | – |
+
+Bis Stufe E erreicht ist, bleibt der Hybrid aus der SSOT pragmatisch: TEE für große Modelle, FHE für die sensibelsten Aufgaben. Hinzu kommt Client-seitige Vorverarbeitung (Schwärzen von Personendaten, Retrieval) vor jedem großen Modell.
+
+### 9.6 Offene Forschungsfragen für Folgepaper
+
+1. **Skalierungsgesetze FHE-nativer Transformer** (polynomielle Attention, bilineare Scores, norm-frei, GLU²) von 10M bis 1B Parametern gegenüber Standard-Transformern bei gleichen Daten.
+2. **Distillation vortrainierter LLMs in FHE-native Schüler:** Welche Komponente lässt sich mit welchem Verlust ersetzen, und wie viel LoRA-Nachtraining ist nötig?
+3. **Strukturierte Linearschichten unter CKKS** (Monarch, block-zirkulant, Kronecker, low-rank plus sparse): gemessene Pareto-Front aus Kosten und Qualität bei 100M–1B Parametern.
+4. **Client-gestütztes Refresh:** formale Sicherheitsanalyse (Maskenverteilung, Präzision, IND-CPA^D) und Latenz-/Kostenmodell gegenüber GPU-Bootstrapping.
+5. **Plaintext-Speicher:** fusionierte Encode-Mult-Kernel, quantisierte Slot-Speicherung und Gewichts-Batching – Durchsatz pro GPU in Tokens pro Sekunde über alle Nutzer.
+6. **MoE unter FHE:** informationstheoretische Leakage-Schranken für Sitzungs-Routing und Qualität von Domänen-Experten.
+7. **Öffentliche Präfixe als Klartext-KV:** Wie viel FHE-Arbeit spart das bei typischen Chat-Workloads mit System-Prompts und RAG?
+8. **Speculative Decoding und Multi-Token-Prediction** mit leakage-freiem Commit.
+9. **Weiche Token-Rückkopplung** für eine Generierung ohne Rundreisen.
+10. **Benchmark- und Berichtsstandard** mit Latenz, Durchsatz, Speicher, Kommunikation, Kosten pro 1.000 Tokens und Leakage – anknüpfend an die „Private LLM Card“ der SoK.
 
 ## 10. Fazit
 
@@ -261,3 +446,23 @@ Arithmetik in kleinen Transformern
 - McLeish et al.: Transformers Can Do Arithmetic with the Right Embeddings (Abacus), NeurIPS 2024 – https://arxiv.org/abs/2405.17399
 - Nanda et al.: Progress Measures for Grokking via Mechanistic Interpretability, ICLR 2023 – https://arxiv.org/abs/2301.05217
 - Zhou et al.: What Algorithms Can Transformers Learn? (RASP-L), ICLR 2024 – https://arxiv.org/abs/2310.16028
+
+Skalierung und Weg zur GPT-4-Klasse (Abschnitt 9)
+- Theodosian – GPU-Bootstrapping in 12,8–22 ms auf RTX 5090, 2025 – https://arxiv.org/abs/2512.18345
+- Cheddar – Swift FHE Library for CUDA GPUs, 2024/25 – https://arxiv.org/abs/2407.13055
+- Ebel, Garimella, Reagen: Orion – FHE Framework for Deep Learning, ASPLOS 2025 – https://arxiv.org/abs/2311.03470
+- Ao, Boddeti: AutoFHE, USENIX Security 2024 – https://arxiv.org/abs/2310.08012
+- Mouchet, Troncoso-Pastoriza, Bossuat, Hubaux: Multiparty HE from RLWE (kollektives Bootstrapping), PoPETs 2021 – https://eprint.iacr.org/2020/304
+- Pang et al.: BOLT, IEEE S&P 2024 – https://eprint.iacr.org/2023/1893 · BLB – Breaking the Layer Barrier, 2025 – https://arxiv.org/abs/2508.19525
+- Xu, Wu, Wang, Li: PrivCirNet – Block Circulant Transformation, NeurIPS 2024 – https://arxiv.org/abs/2405.14569
+- Dao et al.: Monarch – Expressive Structured Matrices, ICML 2022 – https://arxiv.org/abs/2204.00595
+- Lee, Lee, Kim, No: Hierarchical Rotation Keys, ASIACRYPT 2023 – https://eprint.iacr.org/2022/532
+- Cho et al.: Transciphering Framework (RtF/HERA), ASIACRYPT 2021 – https://eprint.iacr.org/2020/1335 · Ha et al.: Rubato, EUROCRYPT 2022 – https://iacr.org/archive/eurocrypt2022/132760256/132760256.pdf
+- Bae, Cheon, Kang, Kim: High-Throughput AES Transciphering using CKKS, 2025 – https://eprint.iacr.org/2025/1865
+- Ashkboos et al.: QuaRot, NeurIPS 2024 – https://arxiv.org/abs/2404.00456 · Liu et al.: SpinQuant, ICLR 2025 – https://arxiv.org/abs/2405.16406
+- Zhang et al.: LoLCATs – Low-Rank Linearizing of LLMs, ICLR 2025 – https://arxiv.org/abs/2410.10254
+- Xiao et al.: StreamingLLM (Attention Sinks), ICLR 2024 – https://arxiv.org/abs/2309.17453
+- Schick et al.: Toolformer, NeurIPS 2023 – https://arxiv.org/abs/2302.04761
+- OpenAI: GPT-4 Technical Report, 2023 – https://arxiv.org/abs/2303.08774 · Llama Team: The Llama 3 Herd of Models, 2024 – https://arxiv.org/abs/2407.21783 · DeepSeek-AI: DeepSeek-V3, 2024 – https://arxiv.org/abs/2412.19437 · Abdin et al.: Phi-3, 2024 – https://arxiv.org/abs/2404.14219
+- Gao et al.: Euston, IEEE S&P 2026 – https://eprint.iacr.org/2026/046 · Breaking Euston – https://arxiv.org/abs/2604.17238
+- IEEE Spectrum: Intel Heracles FHE-Chip, 2026 – https://spectrum.ieee.org/fhe-intel
