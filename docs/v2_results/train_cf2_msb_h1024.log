@@ -1,0 +1,241 @@
+train pairs 4040 | held-out pairs 1010 | other items 445 | rev=False | device cuda
+params: 165962
+step    500 loss 0.8804 | max s 3.1 w 9.4 z 8.7 x 88.4 | 28s
+step   1000 loss 0.4328 | max s 4.6 w 21.5 z 9.1 x 97.8 | 39s
+step   1500 loss 0.3597 | max s 5.7 w 31.9 z 8.5 x 100.9 | 49s
+step   2000 loss 0.3254 | max s 7.3 w 52.8 z 7.3 x 170.9 | 60s
+  [eval 2000] held-out addition 0.1580 | train-pair addition 0.2299 | wrong: [('was ist 0+7?', '77', '7'), ('was ist 7+0?', '77', '7'), ('was ist 0+13?', '31', '13'), ('was ist 13+0?', '31', '13'), ('was ist 25+0?', '55', '25')]
+step   2500 loss 0.3090 | max s 7.4 w 55.2 z 7.5 x 181.7 | 71s
+step   3000 loss 0.2976 | max s 7.8 w 60.4 z 6.8 x 142.3 | 82s
+step   3500 loss 0.2840 | max s 7.9 w 62.7 z 6.1 x 144.4 | 92s
+step   4000 loss 0.2701 | max s 9.5 w 91.1 z 6.3 x 172.1 | 103s
+  [eval 4000] held-out addition 0.2298 | train-pair addition 0.2708 | wrong: [('was ist 0+13?', '103', '13'), ('was ist 13+0?', '33', '13'), ('was ist 29+0?', '27', '29'), ('was ist 0+32?', '33', '32'), ('was ist 48+0?', '58', '48')]
+step   4500 loss 0.2670 | max s 9.7 w 94.4 z 5.7 x 283.8 | 114s
+step   5000 loss 0.2612 | max s 10.0 w 99.5 z 5.1 x 270.3 | 125s
+step   5500 loss 0.2575 | max s 10.4 w 108.6 z 5.3 x 289.8 | 136s
+step   6000 loss 0.2540 | max s 9.2 w 84.7 z 5.2 x 232.6 | 146s
+  [eval 6000] held-out addition 0.2413 | train-pair addition 0.3138 | wrong: [('was ist 0+13?', '33', '13'), ('was ist 13+0?', '33', '13'), ('was ist 0+32?', '33', '32'), ('was ist 32+0?', '33', '32'), ('was ist 0+54?', '55', '54')]
+step   6500 loss 0.2524 | max s 9.4 w 87.7 z 4.4 x 255.4 | 157s
+step   7000 loss 0.2536 | max s 8.5 w 72.2 z 4.4 x 289.1 | 168s
+step   7500 loss 0.2488 | max s 9.1 w 82.4 z 4.3 x 320.9 | 179s
+step   8000 loss 0.2443 | max s 8.4 w 71.1 z 4.3 x 285.5 | 189s
+  [eval 8000] held-out addition 0.2213 | train-pair addition 0.2759 | wrong: [('was ist 0+13?', '31', '13'), ('was ist 13+0?', '33', '13'), ('was ist 0+32?', '39', '32'), ('was ist 0+54?', '55', '54'), ('was ist 0+56?', '65', '56')]
+step   8500 loss 0.2457 | max s 9.3 w 86.5 z 4.8 x 315.1 | 200s
+step   9000 loss 0.2466 | max s 8.1 w 65.1 z 4.1 x 273.2 | 211s
+step   9500 loss 0.2394 | max s 8.0 w 63.3 z 4.1 x 266.9 | 222s
+step  10000 loss 0.2395 | max s 7.6 w 57.5 z 3.9 x 334.3 | 232s
+  [eval 10000] held-out addition 0.2458 | train-pair addition 0.3188 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '23', '13'), ('was ist 13+0?', '12', '13'), ('was ist 29+0?', '27', '29'), ('was ist 32+0?', '22', '32')]
+step  10500 loss 0.2325 | max s 7.4 w 54.8 z 4.0 x 334.9 | 243s
+step  11000 loss 0.2353 | max s 8.0 w 63.9 z 3.8 x 258.0 | 254s
+step  11500 loss 0.2325 | max s 7.2 w 51.6 z 3.7 x 266.6 | 265s
+step  12000 loss 0.2322 | max s 8.0 w 64.3 z 3.8 x 307.5 | 276s
+  [eval 12000] held-out addition 0.2961 | train-pair addition 0.3881 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 7+0?', '8', '7'), ('was ist 0+13?', '33', '13'), ('was ist 13+0?', '11', '13'), ('was ist 32+0?', '22', '32')]
+step  12500 loss 0.2314 | max s 7.1 w 50.3 z 3.6 x 304.8 | 287s
+step  13000 loss 0.2274 | max s 7.5 w 56.9 z 3.7 x 261.9 | 297s
+step  13500 loss 0.2293 | max s 7.2 w 51.9 z 3.7 x 387.0 | 308s
+step  14000 loss 0.2293 | max s 7.7 w 58.6 z 3.5 x 273.4 | 319s
+  [eval 14000] held-out addition 0.2807 | train-pair addition 0.3876 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 7+0?', '8', '7'), ('was ist 0+13?', '103', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+48?', '58', '48')]
+step  14500 loss 0.2222 | max s 6.9 w 47.7 z 3.7 x 281.5 | 330s
+step  15000 loss 0.2253 | max s 7.5 w 56.2 z 3.6 x 345.8 | 341s
+step  15500 loss 0.2188 | max s 7.2 w 52.1 z 4.0 x 296.0 | 351s
+step  16000 loss 0.2179 | max s 7.2 w 51.2 z 3.7 x 304.5 | 362s
+  [eval 16000] held-out addition 0.3280 | train-pair addition 0.4103 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '23', '13'), ('was ist 13+0?', '11', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+56?', '66', '56')]
+step  16500 loss 0.2155 | max s 7.2 w 51.8 z 3.7 x 265.7 | 373s
+step  17000 loss 0.2232 | max s 6.9 w 47.0 z 3.6 x 292.6 | 384s
+step  17500 loss 0.2134 | max s 7.1 w 49.8 z 3.6 x 359.6 | 406s
+step  18000 loss 0.2105 | max s 7.4 w 55.1 z 3.7 x 318.3 | 430s
+  [eval 18000] held-out addition 0.3185 | train-pair addition 0.4138 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '23', '13'), ('was ist 13+0?', '11', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+56?', '65', '56')]
+step  18500 loss 0.2059 | max s 7.2 w 52.1 z 3.7 x 298.2 | 455s
+step  19000 loss 0.2086 | max s 7.1 w 50.4 z 3.8 x 316.6 | 479s
+step  19500 loss 0.2054 | max s 7.0 w 48.8 z 3.7 x 283.9 | 503s
+step  20000 loss 0.2036 | max s 7.3 w 53.2 z 3.8 x 375.4 | 527s
+  [eval 20000] held-out addition 0.3390 | train-pair addition 0.4426 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '23', '13'), ('was ist 13+0?', '23', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+56?', '66', '56')]
+step  20500 loss 0.2011 | max s 7.0 w 48.7 z 3.8 x 326.6 | 549s
+step  21000 loss 0.1961 | max s 7.4 w 54.3 z 3.8 x 378.4 | 573s
+step  21500 loss 0.1953 | max s 6.9 w 48.1 z 3.9 x 353.6 | 597s
+step  22000 loss 0.1900 | max s 7.5 w 56.2 z 4.0 x 353.0 | 621s
+  [eval 22000] held-out addition 0.3614 | train-pair addition 0.4613 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '23', '13'), ('was ist 13+0?', '23', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+56?', '65', '56')]
+step  22500 loss 0.1960 | max s 7.3 w 53.7 z 3.9 x 368.9 | 646s
+step  23000 loss 0.1935 | max s 7.4 w 54.8 z 3.9 x 378.8 | 670s
+step  23500 loss 0.1914 | max s 7.5 w 56.1 z 4.0 x 323.4 | 692s
+step  24000 loss 0.1870 | max s 7.0 w 49.3 z 4.0 x 293.2 | 716s
+  [eval 24000] held-out addition 0.3594 | train-pair addition 0.4563 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '12', '13'), ('was ist 13+0?', '11', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+48?', '58', '48')]
+step  24500 loss 0.1860 | max s 7.7 w 59.0 z 4.1 x 395.6 | 742s
+step  25000 loss 0.1854 | max s 7.6 w 58.2 z 4.2 x 379.2 | 766s
+step  25500 loss 0.1822 | max s 7.5 w 56.2 z 4.1 x 348.3 | 790s
+step  26000 loss 0.1807 | max s 7.4 w 54.7 z 4.1 x 305.3 | 814s
+  [eval 26000] held-out addition 0.3868 | train-pair addition 0.4937 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 0+13?', '23', '13'), ('was ist 13+0?', '23', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+56?', '65', '56')]
+step  26500 loss 0.1827 | max s 7.6 w 58.2 z 4.1 x 426.1 | 837s
+step  27000 loss 0.1795 | max s 7.7 w 59.6 z 4.1 x 339.1 | 860s
+step  27500 loss 0.1783 | max s 7.5 w 55.7 z 4.1 x 428.6 | 884s
+step  28000 loss 0.1786 | max s 7.5 w 56.7 z 4.3 x 381.0 | 909s
+  [eval 28000] held-out addition 0.3863 | train-pair addition 0.5124 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 7+0?', '8', '7'), ('was ist 13+0?', '11', '13'), ('was ist 32+0?', '22', '32'), ('was ist 0+48?', '58', '48')]
+step  28500 loss 0.1777 | max s 7.6 w 58.4 z 4.3 x 335.2 | 934s
+step  29000 loss 0.1751 | max s 7.5 w 56.1 z 4.1 x 370.6 | 958s
+step  29500 loss 0.1756 | max s 7.7 w 59.4 z 4.1 x 356.8 | 981s
+step  30000 loss 0.1795 | max s 7.3 w 52.7 z 4.2 x 390.5 | 1004s
+  [eval 30000] held-out addition 0.3893 | train-pair addition 0.5099 | wrong: [('was ist 0+7?', '8', '7'), ('was ist 7+0?', '8', '7'), ('was ist 0+13?', '12', '13'), ('was ist 13+0?', '11', '13'), ('was ist 32+0?', '22', '32')]
+{
+ "arch": "cipherformer2",
+ "vocab_size": 59,
+ "n_layers": 2,
+ "hidden": 1024,
+ "max_len": 64,
+ "kappa": 0.015625,
+ "d": 64,
+ "rev": false,
+ "steps": 30000,
+ "lr": 0.002,
+ "wd": 0.1,
+ "batch": 512,
+ "heldout_pairs": 1010,
+ "train_pairs": 4040,
+ "heldout_addition_exact": 0.3893320039880359,
+ "heldout_addition_random_template": 0.3831683168316832,
+ "all_pairs_addition_exact": 0.4682,
+ "others_exact": 1.0,
+ "others_per_category": {
+  "smalltalk": 1.0,
+  "hauptstadt": 1.0,
+  "farbe": 1.0,
+  "gegenteil": 1.0,
+  "wochentag": 1.0,
+  "zählen": 1.0,
+  "parität": 1.0,
+  "minus": 1.0,
+  "vergleich": 1.0
+ },
+ "wrong_heldout": [
+  [
+   "was ist 0+7?",
+   "8",
+   "7"
+  ],
+  [
+   "was ist 7+0?",
+   "8",
+   "7"
+  ],
+  [
+   "was ist 0+13?",
+   "12",
+   "13"
+  ],
+  [
+   "was ist 13+0?",
+   "11",
+   "13"
+  ],
+  [
+   "was ist 32+0?",
+   "22",
+   "32"
+  ],
+  [
+   "was ist 0+48?",
+   "58",
+   "48"
+  ],
+  [
+   "was ist 0+56?",
+   "65",
+   "56"
+  ],
+  [
+   "was ist 0+68?",
+   "76",
+   "68"
+  ],
+  [
+   "was ist 68+0?",
+   "69",
+   "68"
+  ],
+  [
+   "was ist 0+73?",
+   "83",
+   "73"
+  ],
+  [
+   "was ist 73+0?",
+   "83",
+   "73"
+  ],
+  [
+   "was ist 0+85?",
+   "93",
+   "85"
+  ]
+ ],
+ "wrong_all": [
+  [
+   "was ist 2+0?",
+   "18",
+   "2"
+  ],
+  [
+   "was ist 0+3?",
+   "12",
+   "3"
+  ],
+  [
+   "was ist 3+0?",
+   "12",
+   "3"
+  ],
+  [
+   "was ist 0+4?",
+   "12",
+   "4"
+  ],
+  [
+   "was ist 4+0?",
+   "12",
+   "4"
+  ],
+  [
+   "was ist 0+5?",
+   "12",
+   "5"
+  ],
+  [
+   "was ist 5+0?",
+   "12",
+   "5"
+  ],
+  [
+   "was ist 0+6?",
+   "12",
+   "6"
+  ],
+  [
+   "was ist 6+0?",
+   "12",
+   "6"
+  ],
+  [
+   "was ist 0+8?",
+   "9",
+   "8"
+  ],
+  [
+   "was ist 0+9?",
+   "10",
+   "9"
+  ],
+  [
+   "was ist 10+0?",
+   "11",
+   "10"
+  ]
+ ],
+ "wrong_others": [],
+ "act_stats": {
+  "s": 7.761039733886719,
+  "w": 60.23373794555664,
+  "z": 4.3336896896362305,
+  "x": 349.4198303222656
+ },
+ "train_seconds": 1012.1969358921051,
+ "params": 165962
+}

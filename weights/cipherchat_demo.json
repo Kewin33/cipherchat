@@ -1,0 +1,22 @@
+{
+  "vocab_size": 59,
+  "d": 64,
+  "d_ff": 128,
+  "n_layers": 2,
+  "max_len": 64,
+  "train_exact_match": 1.0,
+  "heldout_exact_match": null,
+  "per_category_train": {
+    "smalltalk": 1.0,
+    "hauptstadt": 1.0,
+    "farbe": 1.0,
+    "gegenteil": 1.0,
+    "wochentag": 1.0,
+    "zählen": 1.0,
+    "parität": 1.0,
+    "rechnen": 1.0,
+    "vergleich": 1.0
+  },
+  "per_category_heldout": {},
+  "steps": 8000
+}

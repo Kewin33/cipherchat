@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "name": "A) Klartext (UTF-8 Bytes)",
+      "val_ce": 0.3374091180039924,
+      "chance_ce": 5.545177444479562,
+      "acc": 0.8664793026246844,
+      "vocab": 256
+    },
+    {
+      "name": "B) AES-CTR, zufällige Nonce (korrekt)",
+      "val_ce": 5.673973960442171,
+      "chance_ce": 5.545177444479562,
+      "acc": 0.00392988138903444,
+      "vocab": 256
+    },
+    {
+      "name": "C) AES-ECB pro Zeichen (deterministisch)",
+      "val_ce": 0.3378979149304928,
+      "chance_ce": 3.871201010907891,
+      "acc": 0.8676254486762545,
+      "vocab": 48
+    },
+    {
+      "name": "D) AES-CTR, feste Nonce (Nonce-Reuse)",
+      "val_ce": 0.4858959275952847,
+      "chance_ce": 5.545177444479562,
+      "acc": 0.8322297908826751,
+      "vocab": 256
+    }
+  ],
+  "attack_ecb_char_acc": 0.2535429794048066,
+  "attack_ctr_fixed_nonce_byte_acc": 0.9103352642526448,
+  "attack_ecb_unigram_acc": 0.6220490817370699,
+  "attack_ecb_bigram_hillclimb_acc": 0.9633143636787965,
+  "attack_ctr_fixed_nonce_same_domain_acc": 0.9997869299265796
+}

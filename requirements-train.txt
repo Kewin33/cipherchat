@@ -1,0 +1,4 @@
+# Training (CPU or CUDA). Install the CUDA build of torch from pytorch.org for your GPU if needed.
+torch>=2.2
+numpy>=1.26
+pycryptodome>=3.20   # only for experiments/aes_learnability.py

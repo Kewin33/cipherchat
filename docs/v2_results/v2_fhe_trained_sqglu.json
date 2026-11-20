@@ -1,0 +1,541 @@
+{
+  "rows": [
+    {
+      "prompt": "hallo",
+      "tokens": 13,
+      "max_err": 0.15153167576217896,
+      "fhe": "hallo!",
+      "plain": "hallo!",
+      "match": true
+    },
+    {
+      "prompt": "hauptstadt von polen?",
+      "tokens": 32,
+      "max_err": 0.004076149654430594,
+      "fhe": "warschau.",
+      "plain": "warschau.",
+      "match": true
+    },
+    {
+      "prompt": "zähl bis 3",
+      "tokens": 17,
+      "max_err": 0.003707451356779412,
+      "fhe": "1 2 3",
+      "plain": "1 2 3",
+      "match": true
+    },
+    {
+      "prompt": "ist 4 gerade?",
+      "tokens": 18,
+      "max_err": 0.002860685223721793,
+      "fhe": "ja.",
+      "plain": "ja.",
+      "match": true
+    },
+    {
+      "prompt": "was ist 7+79?",
+      "tokens": 17,
+      "max_err": 0.0027472179821055875,
+      "fhe": "86",
+      "plain": "86",
+      "match": true
+    },
+    {
+      "prompt": "was ist 99+99?",
+      "tokens": 19,
+      "max_err": 0.004372997975352483,
+      "fhe": "198",
+      "plain": "198",
+      "match": true
+    },
+    {
+      "prompt": "gegenteil von laut?",
+      "tokens": 27,
+      "max_err": 0.10843808315606296,
+      "fhe": "leise.",
+      "plain": "leise.",
+      "match": true
+    },
+    {
+      "prompt": "danke",
+      "tokens": 12,
+      "max_err": 0.0034414422956459134,
+      "fhe": "gern!",
+      "plain": "gern!",
+      "match": true
+    },
+    {
+      "prompt": "was ist 14+3?",
+      "tokens": 17,
+      "max_err": 0.0019217005731384518,
+      "fhe": "17",
+      "plain": "17",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 58+14?",
+      "tokens": 18,
+      "max_err": 0.002486767184538108,
+      "fhe": "72",
+      "plain": "72",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 4+90?",
+      "tokens": 17,
+      "max_err": 0.002541511136067154,
+      "fhe": "94",
+      "plain": "94",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 52+58?",
+      "tokens": 19,
+      "max_err": 0.004727193912744454,
+      "fhe": "110",
+      "plain": "110",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 73+23?",
+      "tokens": 18,
+      "max_err": 0.003576170200890516,
+      "fhe": "96",
+      "plain": "96",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 52+14?",
+      "tokens": 18,
+      "max_err": 0.0037702370152032927,
+      "fhe": "66",
+      "plain": "66",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 8+6?",
+      "tokens": 16,
+      "max_err": 0.002133054706212223,
+      "fhe": "14",
+      "plain": "14",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 60+77?",
+      "tokens": 19,
+      "max_err": 0.0035370207776629914,
+      "fhe": "137",
+      "plain": "137",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 69+97?",
+      "tokens": 19,
+      "max_err": 0.0027827259476802535,
+      "fhe": "166",
+      "plain": "166",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 88+65?",
+      "tokens": 19,
+      "max_err": 0.007024080585009251,
+      "fhe": "153",
+      "plain": "153",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 2+33?",
+      "tokens": 17,
+      "max_err": 0.0035039037257469374,
+      "fhe": "35",
+      "plain": "35",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 35+22?",
+      "tokens": 18,
+      "max_err": 0.004724904945664576,
+      "fhe": "57",
+      "plain": "57",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 32+68?",
+      "tokens": 19,
+      "max_err": 0.002348559301670383,
+      "fhe": "100",
+      "plain": "100",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 34+88?",
+      "tokens": 19,
+      "max_err": 0.0021481094426650804,
+      "fhe": "122",
+      "plain": "122",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 19+31?",
+      "tokens": 18,
+      "max_err": 0.003170488406269434,
+      "fhe": "50",
+      "plain": "50",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 90+19?",
+      "tokens": 19,
+      "max_err": 0.0033182931613400246,
+      "fhe": "109",
+      "plain": "109",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 80+62?",
+      "tokens": 19,
+      "max_err": 0.0039650349813165064,
+      "fhe": "142",
+      "plain": "142",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 8+38?",
+      "tokens": 17,
+      "max_err": 0.005014114069182007,
+      "fhe": "46",
+      "plain": "46",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 7+49?",
+      "tokens": 17,
+      "max_err": 0.003981948139805513,
+      "fhe": "56",
+      "plain": "56",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 19+62?",
+      "tokens": 18,
+      "max_err": 0.0017736515696213928,
+      "fhe": "81",
+      "plain": "81",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 34+81?",
+      "tokens": 19,
+      "max_err": 0.00493381324315223,
+      "fhe": "115",
+      "plain": "115",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 36+19?",
+      "tokens": 18,
+      "max_err": 0.003128548829124611,
+      "fhe": "55",
+      "plain": "55",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 72+46?",
+      "tokens": 19,
+      "max_err": 0.0020604381622923995,
+      "fhe": "118",
+      "plain": "118",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 20+13?",
+      "tokens": 18,
+      "max_err": 0.004699891882986779,
+      "fhe": "33",
+      "plain": "33",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 70+8?",
+      "tokens": 17,
+      "max_err": 0.002425431741689632,
+      "fhe": "78",
+      "plain": "78",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 13+0?",
+      "tokens": 17,
+      "max_err": 0.0030227688547865283,
+      "fhe": "13",
+      "plain": "13",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 71+74?",
+      "tokens": 19,
+      "max_err": 0.003593152559618229,
+      "fhe": "145",
+      "plain": "145",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 74+25?",
+      "tokens": 18,
+      "max_err": 0.0029652598234325978,
+      "fhe": "99",
+      "plain": "99",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 52+90?",
+      "tokens": 19,
+      "max_err": 0.0028230068695478394,
+      "fhe": "142",
+      "plain": "142",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 73+66?",
+      "tokens": 19,
+      "max_err": 0.009088727534173557,
+      "fhe": "139",
+      "plain": "139",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 37+42?",
+      "tokens": 18,
+      "max_err": 0.0022881805014672296,
+      "fhe": "79",
+      "plain": "79",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 30+22?",
+      "tokens": 18,
+      "max_err": 0.005550494880761647,
+      "fhe": "52",
+      "plain": "52",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 96+3?",
+      "tokens": 17,
+      "max_err": 0.0025483022235839314,
+      "fhe": "99",
+      "plain": "99",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 40+0?",
+      "tokens": 17,
+      "max_err": 0.002762637446177496,
+      "fhe": "40",
+      "plain": "40",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 93+17?",
+      "tokens": 19,
+      "max_err": 0.0034644438848047687,
+      "fhe": "110",
+      "plain": "110",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 53+49?",
+      "tokens": 19,
+      "max_err": 0.006016162852615636,
+      "fhe": "102",
+      "plain": "102",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 71+26?",
+      "tokens": 18,
+      "max_err": 0.0024004730861424406,
+      "fhe": "97",
+      "plain": "97",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 55+5?",
+      "tokens": 17,
+      "max_err": 0.005679735040000411,
+      "fhe": "60",
+      "plain": "60",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 2+53?",
+      "tokens": 17,
+      "max_err": 0.004110473570091755,
+      "fhe": "55",
+      "plain": "55",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 5+5?",
+      "tokens": 16,
+      "max_err": 0.0033757249950992774,
+      "fhe": "10",
+      "plain": "10",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 43+56?",
+      "tokens": 18,
+      "max_err": 0.00442515358822787,
+      "fhe": "99",
+      "plain": "99",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 65+7?",
+      "tokens": 17,
+      "max_err": 0.003971587728830439,
+      "fhe": "72",
+      "plain": "72",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 12+7?",
+      "tokens": 17,
+      "max_err": 0.002531747193149747,
+      "fhe": "19",
+      "plain": "19",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 54+79?",
+      "tokens": 19,
+      "max_err": 0.005684618221048154,
+      "fhe": "133",
+      "plain": "133",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 71+76?",
+      "tokens": 19,
+      "max_err": 0.0028849045423893216,
+      "fhe": "147",
+      "plain": "147",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 1+45?",
+      "tokens": 17,
+      "max_err": 0.005391799891992122,
+      "fhe": "46",
+      "plain": "46",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 16+37?",
+      "tokens": 18,
+      "max_err": 0.004850169393157716,
+      "fhe": "53",
+      "plain": "53",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 73+73?",
+      "tokens": 19,
+      "max_err": 0.006327887358799522,
+      "fhe": "146",
+      "plain": "146",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 25+42?",
+      "tokens": 18,
+      "max_err": 0.002006022599234214,
+      "fhe": "67",
+      "plain": "67",
+      "match": true,
+      "correct": true
+    },
+    {
+      "prompt": "was ist 35+82?",
+      "tokens": 19,
+      "max_err": 0.0019175726603736787,
+      "fhe": "117",
+      "plain": "117",
+      "match": true,
+      "correct": true
+    }
+  ],
+  "sec_per_prompt_token": 0.23140306699843632,
+  "sec_per_generated_token": 0.34179639043631377,
+  "median_generated": 0.34124326705932617,
+  "max_logit_err": 0.15153167576217896,
+  "eval_key_mb": 224.984746,
+  "n_rot_keys": 25,
+  "warmup_s": 1.229410171508789,
+  "plaintext_cache_mb": 346.1015625,
+  "rss_total_mb": 1156.96875,
+  "maxrss_mb": 1156.9921875,
+  "ring_dim": 16384,
+  "scale_bits": 33,
+  "first_mod_bits": 45,
+  "counters": {
+    "rot": 38362,
+    "rot_hoisted": 34965,
+    "ptmul": 393792,
+    "ctmul": 4256,
+    "encode": 579
+  },
+  "omp": "8",
+  "cpus": 8,
+  "ct_up_mb": 2.360987
+}

@@ -1,0 +1,14 @@
+# Demo: both containers on one machine. In production the client runs on the user's device.
+services:
+  server:
+    build: .
+    command: uvicorn server.app:app --host 0.0.0.0 --port 8000
+    ports: ["8000:8000"]
+  client:
+    build: .
+    command: uvicorn client.app:app --host 0.0.0.0 --port 8501
+    environment:
+      - CIPHERCHAT_SERVER=http://server:8000
+    ports: ["8501:8501"]
+    depends_on: [server]
+    restart: on-failure

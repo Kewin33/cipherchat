@@ -1,0 +1,123 @@
+train pairs 4040 | held-out pairs 1010 | other items 445 | rev=True | device cuda
+params: 427712
+pool of 401408 sequences built in 13s
+step    500 loss 0.3302 | max s 5.2 w 27.1 z 7.6 x 204.9 | 44s
+step   1000 loss 0.0428 | max s 6.8 w 46.6 z 6.0 x 137.7 | 81s
+step   1500 loss 0.0145 | max s 6.9 w 47.2 z 6.4 x 157.1 | 102s
+step   2000 loss 0.0088 | max s 6.5 w 42.4 z 6.0 x 113.9 | 123s
+  [eval 2000] held-out addition 0.9885 | train-pair addition 0.9944 | wrong: [('was ist 73+0?', '83', '73'), ('was ist 73+1?', '84', '74'), ('was ist 9+19?', '18', '28'), ('was ist 19+9?', '18', '28'), ('was ist 11+60?', '81', '71')]
+step   2500 loss 0.0026 | max s 6.1 w 37.3 z 6.7 x 57.7 | 167s
+step   3000 loss 0.0022 | max s 6.3 w 39.5 z 5.8 x 72.1 | 208s
+step   3500 loss 0.0018 | max s 5.5 w 30.2 z 5.3 x 46.9 | 249s
+step   4000 loss 0.0014 | max s 4.8 w 22.7 z 4.8 x 42.3 | 289s
+  [eval 4000] held-out addition 0.9995 | train-pair addition 1.0000 | wrong: [('was ist 5+5?', '60', '10')]
+step   4500 loss 0.0019 | max s 4.2 w 17.8 z 5.2 x 41.7 | 334s
+step   5000 loss 0.0053 | max s 4.6 w 21.3 z 5.3 x 47.9 | 375s
+step   5500 loss 0.0000 | max s 3.2 w 10.2 z 4.7 x 17.5 | 417s
+step   6000 loss 0.0001 | max s 3.6 w 13.0 z 4.5 x 27.9 | 458s
+  [eval 6000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step   6500 loss 0.0003 | max s 3.8 w 14.4 z 4.2 x 31.6 | 482s
+step   7000 loss 0.0022 | max s 4.1 w 16.4 z 4.5 x 34.1 | 517s
+step   7500 loss 0.0000 | max s 3.0 w 9.3 z 4.4 x 16.9 | 559s
+step   8000 loss 0.0000 | max s 3.1 w 9.7 z 4.5 x 18.2 | 600s
+  [eval 8000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step   8500 loss 0.0048 | max s 3.3 w 10.6 z 4.2 x 47.8 | 643s
+step   9000 loss 0.0001 | max s 3.0 w 8.9 z 4.2 x 22.0 | 669s
+step   9500 loss 0.0001 | max s 3.4 w 11.9 z 4.1 x 16.6 | 690s
+step  10000 loss 0.0022 | max s 3.5 w 12.4 z 4.6 x 39.3 | 711s
+  [eval 10000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  10500 loss 0.0000 | max s 2.8 w 7.9 z 4.4 x 16.1 | 755s
+step  11000 loss 0.0000 | max s 2.7 w 7.4 z 4.2 x 14.2 | 796s
+step  11500 loss 0.0004 | max s 2.8 w 8.0 z 4.3 x 17.9 | 837s
+step  12000 loss 0.0024 | max s 3.1 w 9.5 z 4.9 x 48.2 | 877s
+  [eval 12000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  12500 loss 0.0000 | max s 2.7 w 7.2 z 4.2 x 24.6 | 918s
+step  13000 loss 0.0003 | max s 2.9 w 8.6 z 4.1 x 30.4 | 959s
+step  13500 loss 0.0000 | max s 2.6 w 6.6 z 4.4 x 19.0 | 1000s
+step  14000 loss 0.0000 | max s 2.6 w 6.8 z 4.3 x 17.0 | 1041s
+  [eval 14000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  14500 loss 0.0003 | max s 2.8 w 7.9 z 4.4 x 26.0 | 1067s
+step  15000 loss 0.0000 | max s 2.6 w 6.5 z 4.3 x 14.2 | 1088s
+step  15500 loss 0.0001 | max s 2.9 w 8.5 z 4.2 x 13.8 | 1110s
+step  16000 loss 0.0000 | max s 2.6 w 6.9 z 4.3 x 10.9 | 1148s
+  [eval 16000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  16500 loss 0.0000 | max s 2.6 w 7.0 z 4.0 x 18.7 | 1192s
+step  17000 loss 0.0024 | max s 2.8 w 8.0 z 5.0 x 27.4 | 1233s
+step  17500 loss 0.0000 | max s 2.6 w 7.0 z 4.0 x 12.8 | 1274s
+step  18000 loss 0.0010 | max s 3.0 w 9.2 z 4.1 x 27.2 | 1297s
+  [eval 18000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  18500 loss 0.0000 | max s 2.6 w 6.8 z 3.8 x 11.4 | 1341s
+step  19000 loss 0.0000 | max s 2.7 w 7.1 z 4.0 x 9.3 | 1382s
+step  19500 loss 0.0000 | max s 2.6 w 6.9 z 4.0 x 12.8 | 1423s
+step  20000 loss 0.0000 | max s 2.7 w 7.4 z 4.1 x 10.0 | 1464s
+  [eval 20000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  20500 loss 0.0001 | max s 2.9 w 8.6 z 4.3 x 14.9 | 1497s
+step  21000 loss 0.0000 | max s 2.8 w 7.6 z 4.1 x 14.0 | 1538s
+step  21500 loss 0.0008 | max s 3.0 w 9.2 z 4.5 x 35.7 | 1579s
+step  22000 loss 0.0000 | max s 2.8 w 7.9 z 4.0 x 19.5 | 1620s
+  [eval 22000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  22500 loss 0.0000 | max s 2.8 w 8.0 z 4.1 x 9.2 | 1654s
+step  23000 loss 0.0000 | max s 2.8 w 8.0 z 4.2 x 10.5 | 1675s
+step  23500 loss 0.0000 | max s 2.9 w 8.4 z 4.3 x 8.9 | 1696s
+step  24000 loss 0.0000 | max s 2.9 w 8.5 z 4.5 x 15.4 | 1728s
+  [eval 24000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  24500 loss 0.0000 | max s 3.0 w 9.2 z 4.6 x 16.2 | 1771s
+step  25000 loss 0.0000 | max s 2.8 w 7.8 z 4.2 x 10.9 | 1812s
+step  25500 loss 0.0000 | max s 2.9 w 8.1 z 4.4 x 11.4 | 1853s
+step  26000 loss 0.0000 | max s 3.0 w 9.0 z 4.5 x 16.3 | 1883s
+  [eval 26000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  26500 loss 0.0000 | max s 3.0 w 9.1 z 4.7 x 17.5 | 1908s
+step  27000 loss 0.0000 | max s 3.0 w 9.3 z 4.7 x 14.5 | 1929s
+step  27500 loss 0.0000 | max s 3.1 w 9.4 z 4.8 x 18.0 | 1950s
+step  28000 loss 0.0000 | max s 3.1 w 9.3 z 4.8 x 15.3 | 1971s
+  [eval 28000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+step  28500 loss 0.0000 | max s 3.1 w 9.7 z 4.8 x 10.6 | 1996s
+step  29000 loss 0.0000 | max s 3.1 w 9.8 z 4.8 x 18.4 | 2017s
+step  29500 loss 0.0000 | max s 3.1 w 9.9 z 4.9 x 10.8 | 2038s
+step  30000 loss 0.0000 | max s 3.2 w 10.0 z 4.9 x 18.9 | 2059s
+  [eval 30000] held-out addition 1.0000 | train-pair addition 1.0000 | wrong: []
+{
+ "arch": "cipherformer2",
+ "vocab_size": 59,
+ "n_layers": 2,
+ "hidden": 2048,
+ "max_len": 64,
+ "kappa": 0.015625,
+ "d": 64,
+ "n_sig": 5,
+ "mlp": "sqglu",
+ "rev": true,
+ "coupling": true,
+ "steps": 30000,
+ "lr": 0.002,
+ "wd": 0.1,
+ "batch": 512,
+ "heldout_pairs": 1010,
+ "train_pairs": 4040,
+ "heldout_addition_exact": 1.0,
+ "heldout_addition_random_template": 1.0,
+ "all_pairs_addition_exact": 1.0,
+ "others_exact": 1.0,
+ "others_per_category": {
+  "smalltalk": 1.0,
+  "hauptstadt": 1.0,
+  "farbe": 1.0,
+  "gegenteil": 1.0,
+  "wochentag": 1.0,
+  "zählen": 1.0,
+  "parität": 1.0,
+  "minus": 1.0,
+  "vergleich": 1.0
+ },
+ "wrong_heldout": [],
+ "wrong_all": [],
+ "wrong_others": [],
+ "act_stats": {
+  "s": 3.1890828609466553,
+  "w": 10.170249938964844,
+  "z": 4.9304094314575195,
+  "x": 19.05927848815918
+ },
+ "train_seconds": 2061.6719512939453,
+ "params": 427712
+}

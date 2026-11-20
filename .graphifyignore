@@ -1,0 +1,7 @@
+# graphify: skip binary weights, screenshots and run artifacts
+weights/
+docs/*.png
+logs/
+*.npz
+*.pt
+.venv/

@@ -1,0 +1,26 @@
+[
+  {
+    "dnum": 2,
+    "ring_dim": 32768,
+    "eval_key_mb": 368.1,
+    "keygen_s": 0.26,
+    "sec_per_token": 0.9868,
+    "max_err": 0.0004889283133197586
+  },
+  {
+    "dnum": 3,
+    "ring_dim": 16384,
+    "eval_key_mb": 225.0,
+    "keygen_s": 0.13,
+    "sec_per_token": 0.4057,
+    "max_err": 0.00010646499956765143
+  },
+  {
+    "dnum": 9,
+    "ring_dim": 16384,
+    "eval_key_mb": 613.6,
+    "keygen_s": 0.37,
+    "sec_per_token": 0.6255,
+    "max_err": 9.794915700422901e-05
+  }
+]

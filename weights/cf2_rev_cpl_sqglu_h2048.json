@@ -1,0 +1,137 @@
+{
+  "arch": "cipherformer2",
+  "vocab_size": 59,
+  "n_layers": 2,
+  "hidden": 2048,
+  "max_len": 64,
+  "kappa": 0.015625,
+  "d": 64,
+  "n_sig": 5,
+  "mlp": "sqglu",
+  "rev": true,
+  "coupling": true,
+  "steps": 30000,
+  "lr": 0.002,
+  "wd": 0.1,
+  "batch": 512,
+  "heldout_pairs": 1010,
+  "train_pairs": 4040,
+  "heldout_addition_exact": 1.0,
+  "heldout_addition_random_template": 1.0,
+  "all_pairs_addition_exact": 1.0,
+  "others_exact": 1.0,
+  "others_per_category": {
+    "smalltalk": 1.0,
+    "hauptstadt": 1.0,
+    "farbe": 1.0,
+    "gegenteil": 1.0,
+    "wochentag": 1.0,
+    "zählen": 1.0,
+    "parität": 1.0,
+    "minus": 1.0,
+    "vergleich": 1.0
+  },
+  "wrong_heldout": [],
+  "wrong_all": [],
+  "wrong_others": [],
+  "act_stats": {
+    "s": 3.1890828609466553,
+    "w": 10.170249938964844,
+    "z": 4.9304094314575195,
+    "x": 19.05927848815918
+  },
+  "history": [
+    {
+      "step": 2000,
+      "loss": 0.008814743855606086,
+      "heldout": 0.9885343968095713,
+      "train": 0.9944416371905003
+    },
+    {
+      "step": 4000,
+      "loss": 0.0013905922502066058,
+      "heldout": 0.9995014955134596,
+      "train": 1.0
+    },
+    {
+      "step": 6000,
+      "loss": 8.503851841268922e-05,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 8000,
+      "loss": 1.980249538654597e-05,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 10000,
+      "loss": 0.0022497922808413628,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 12000,
+      "loss": 0.002443416793305297,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 14000,
+      "loss": 8.027326388543069e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 16000,
+      "loss": 4.994807562657018e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 18000,
+      "loss": 0.001028044473795996,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 20000,
+      "loss": 4.652368787434472e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 22000,
+      "loss": 4.819833070779425e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 24000,
+      "loss": 4.568022038240988e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 26000,
+      "loss": 4.440151673422583e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 28000,
+      "loss": 4.425562747762762e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    },
+    {
+      "step": 30000,
+      "loss": 4.457333480757869e-06,
+      "heldout": 1.0,
+      "train": 1.0
+    }
+  ],
+  "train_seconds": 2061.6719512939453,
+  "params": 427712
+}

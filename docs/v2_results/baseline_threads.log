@@ -1,0 +1,12 @@
+=== OMP_NUM_THREADS=24 cpus=0-23 ===
+{'all_match': True, 'sec_per_prompt_token': 0.978636804379915, 'sec_per_generated_token': 1.251769224802653, 'ciphertext_up_mb': 2.360987, 'logits_down_mb': 0.525757, 'cpu_count': 24}
+=== OMP_NUM_THREADS=8 cpus=0-7 ===
+{'all_match': True, 'sec_per_prompt_token': 0.9546487707840768, 'sec_per_generated_token': 1.1990967856513128, 'ciphertext_up_mb': 2.360987, 'logits_down_mb': 0.525757, 'cpu_count': 24}
+=== OMP_NUM_THREADS=16 cpus=0-15 ===
+{'all_match': True, 'sec_per_prompt_token': 1.0108784123470909, 'sec_per_generated_token': 1.2540590233272977, 'ciphertext_up_mb': 2.360987, 'logits_down_mb': 0.525757, 'cpu_count': 24}
+=== OMP_NUM_THREADS=4 cpus=0-3 ===
+{'all_match': True, 'sec_per_prompt_token': 0.9978811364424857, 'sec_per_generated_token': 1.2291355397966173, 'ciphertext_up_mb': 2.360987, 'logits_down_mb': 0.525757, 'cpu_count': 24}
+=== OMP_NUM_THREADS=2 cpus=0-1 ===
+{'all_match': True, 'sec_per_prompt_token': 1.2672397462945235, 'sec_per_generated_token': 1.5960036383734808, 'ciphertext_up_mb': 2.360987, 'logits_down_mb': 0.525757, 'cpu_count': 24}
+=== OMP_NUM_THREADS=1 cpus=0 ===
+{'all_match': True, 'sec_per_prompt_token': 1.6953592927832353, 'sec_per_generated_token': 2.130377345614963, 'ciphertext_up_mb': 2.360987, 'logits_down_mb': 0.525757, 'cpu_count': 24}

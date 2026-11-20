@@ -1,0 +1,173 @@
+train pairs 4040 | held-out pairs 1010 | other items 445 | rev=True | device cuda
+params: 166592
+step    500 loss 0.8412 | max s 4.9 w 23.9 z 9.0 x 98.6 | 52s
+step   1000 loss 0.2881 | max s 9.0 w 80.3 z 10.3 x 199.4 | 88s
+step   1500 loss 0.0818 | max s 10.5 w 109.4 z 7.9 x 196.7 | 125s
+step   2000 loss 0.0419 | max s 9.5 w 89.8 z 7.2 x 153.0 | 161s
+  [eval 2000] held-out addition 0.8814 | train-pair addition 0.9151 | wrong: [('was ist 0+40?', '50', '40'), ('was ist 40+0?', '50', '40'), ('was ist 0+73?', '83', '73'), ('was ist 73+0?', '83', '73'), ('was ist 1+50?', '61', '51')]
+step   2500 loss 0.0264 | max s 8.3 w 69.0 z 7.2 x 129.5 | 201s
+step   3000 loss 0.0203 | max s 8.9 w 78.6 z 6.3 x 104.7 | 238s
+step   3500 loss 0.0158 | max s 9.4 w 88.4 z 6.2 x 101.8 | 274s
+step   4000 loss 0.0145 | max s 9.1 w 83.1 z 5.7 x 120.2 | 311s
+  [eval 4000] held-out addition 0.9641 | train-pair addition 0.9778 | wrong: [('was ist 0+40?', '50', '40'), ('was ist 40+0?', '50', '40'), ('was ist 0+80?', '160', '80'), ('was ist 80+0?', '160', '80'), ('was ist 1+64?', '115', '65')]
+step   4500 loss 0.0130 | max s 10.0 w 99.5 z 5.8 x 97.7 | 349s
+step   5000 loss 0.0103 | max s 9.4 w 87.5 z 4.9 x 88.6 | 386s
+step   5500 loss 0.0106 | max s 8.3 w 69.0 z 4.6 x 86.1 | 423s
+step   6000 loss 0.0093 | max s 8.7 w 75.8 z 4.7 x 97.4 | 459s
+  [eval 6000] held-out addition 0.9811 | train-pair addition 0.9975 | wrong: [('was ist 0+40?', '50', '40'), ('was ist 40+0?', '50', '40'), ('was ist 7+79?', '76', '86'), ('was ist 79+7?', '76', '86'), ('was ist 8+78?', '76', '86')]
+step   6500 loss 0.0103 | max s 8.3 w 68.8 z 4.6 x 143.4 | 499s
+step   7000 loss 0.0060 | max s 9.8 w 96.5 z 4.5 x 235.5 | 536s
+step   7500 loss 0.0045 | max s 8.8 w 77.7 z 3.6 x 90.7 | 572s
+step   8000 loss 0.0068 | max s 6.6 w 43.8 z 3.4 x 181.3 | 609s
+  [eval 8000] held-out addition 0.9835 | train-pair addition 0.9944 | wrong: [('was ist 0+40?', '50', '40'), ('was ist 40+0?', '50', '40'), ('was ist 9+42?', '41', '51'), ('was ist 42+9?', '41', '51'), ('was ist 9+59?', '58', '68')]
+step   8500 loss 0.0047 | max s 9.0 w 81.2 z 3.8 x 150.5 | 642s
+step   9000 loss 0.0063 | max s 9.3 w 85.7 z 4.0 x 78.0 | 662s
+step   9500 loss 0.0048 | max s 8.3 w 68.6 z 3.2 x 80.1 | 682s
+step  10000 loss 0.0069 | max s 8.6 w 73.2 z 2.9 x 87.4 | 703s
+  [eval 10000] held-out addition 0.9631 | train-pair addition 0.9692 | wrong: [('was ist 0+80?', '60', '80'), ('was ist 80+0?', '60', '80'), ('was ist 91+0?', '81', '91'), ('was ist 1+89?', '80', '90'), ('was ist 89+1?', '80', '90')]
+step  10500 loss 0.0045 | max s 8.6 w 74.4 z 3.6 x 102.1 | 724s
+step  11000 loss 0.0046 | max s 7.0 w 48.5 z 3.5 x 81.0 | 744s
+step  11500 loss 0.0053 | max s 9.0 w 81.3 z 3.7 x 165.8 | 781s
+step  12000 loss 0.0040 | max s 7.3 w 53.6 z 3.5 x 156.4 | 822s
+  [eval 12000] held-out addition 0.9870 | train-pair addition 0.9980 | wrong: [('was ist 0+56?', '66', '56'), ('was ist 56+0?', '66', '56'), ('was ist 6+50?', '66', '56'), ('was ist 50+6?', '66', '56'), ('was ist 9+58?', '57', '67')]
+step  12500 loss 0.0036 | max s 8.0 w 64.4 z 3.5 x 178.0 | 910s
+step  13000 loss 0.0032 | max s 9.3 w 87.0 z 2.5 x 90.8 | 951s
+step  13500 loss 0.0021 | max s 8.3 w 68.2 z 3.0 x 84.3 | 993s
+step  14000 loss 0.0033 | max s 8.3 w 69.5 z 3.1 x 118.5 | 1034s
+  [eval 14000] held-out addition 0.9860 | train-pair addition 0.9965 | wrong: [('was ist 8+57?', '55', '65'), ('was ist 57+8?', '55', '65'), ('was ist 9+58?', '57', '67'), ('was ist 58+9?', '57', '67'), ('was ist 9+59?', '58', '68')]
+step  14500 loss 0.0025 | max s 7.8 w 60.1 z 3.0 x 131.1 | 1080s
+step  15000 loss 0.0033 | max s 8.2 w 68.0 z 3.0 x 149.4 | 1122s
+step  15500 loss 0.0042 | max s 7.9 w 62.0 z 2.4 x 81.1 | 1164s
+step  16000 loss 0.0019 | max s 9.0 w 80.5 z 3.1 x 174.4 | 1205s
+  [eval 16000] held-out addition 0.9925 | train-pair addition 1.0000 | wrong: [('was ist 0+40?', '50', '40'), ('was ist 40+0?', '50', '40'), ('was ist 9+59?', '58', '68'), ('was ist 59+9?', '58', '68'), ('was ist 29+79?', '98', '108')]
+step  16500 loss 0.0025 | max s 8.2 w 67.4 z 2.8 x 130.5 | 1276s
+step  17000 loss 0.0023 | max s 8.0 w 63.5 z 2.4 x 142.2 | 1317s
+step  17500 loss 0.0026 | max s 7.4 w 55.3 z 2.4 x 99.7 | 1357s
+step  18000 loss 0.0008 | max s 7.9 w 61.8 z 2.4 x 159.0 | 1398s
+  [eval 18000] held-out addition 0.9935 | train-pair addition 1.0000 | wrong: [('was ist 9+59?', '58', '68'), ('was ist 59+9?', '58', '68'), ('was ist 40+70?', '0jalll', '110'), ('was ist 70+40?', '0jalll', '110'), ('was ist 40+71?', '71', '111')]
+step  18500 loss 0.0009 | max s 6.7 w 45.4 z 2.5 x 116.2 | 1498s
+step  19000 loss 0.0011 | max s 8.3 w 69.1 z 2.2 x 133.6 | 1539s
+step  19500 loss 0.0009 | max s 6.9 w 48.0 z 2.4 x 138.9 | 1581s
+step  20000 loss 0.0005 | max s 8.2 w 66.8 z 2.1 x 80.9 | 1622s
+  [eval 20000] held-out addition 0.9975 | train-pair addition 1.0000 | wrong: [('was ist 9+59?', '58', '68'), ('was ist 59+9?', '58', '68'), ('was ist 29+79?', '98', '108'), ('was ist 48+48?', '86', '96'), ('was ist 48+49?', '87', '97')]
+step  20500 loss 0.0006 | max s 8.0 w 64.1 z 2.1 x 68.3 | 1672s
+step  21000 loss 0.0011 | max s 7.9 w 62.8 z 2.3 x 125.6 | 1714s
+step  21500 loss 0.0007 | max s 8.2 w 66.9 z 2.3 x 116.7 | 1756s
+step  22000 loss 0.0002 | max s 7.7 w 60.0 z 2.2 x 101.6 | 1795s
+  [eval 22000] held-out addition 0.9970 | train-pair addition 1.0000 | wrong: [('was ist 40+70?', '0', '110'), ('was ist 70+40?', '0', '110'), ('was ist 71+40?', '1', '111'), ('was ist 41+70?', '1', '111'), ('was ist 48+48?', '86', '96')]
+step  22500 loss 0.0004 | max s 7.4 w 54.7 z 2.1 x 78.7 | 1897s
+step  23000 loss 0.0003 | max s 7.9 w 62.4 z 2.1 x 108.1 | 1939s
+step  23500 loss 0.0004 | max s 8.3 w 69.3 z 1.9 x 66.1 | 1981s
+step  24000 loss 0.0001 | max s 8.4 w 70.3 z 2.1 x 82.8 | 2023s
+  [eval 24000] held-out addition 0.9960 | train-pair addition 1.0000 | wrong: [('was ist 30+70?', '60', '100'), ('was ist 40+70?', '60', '110'), ('was ist 70+40?', '60', '110'), ('was ist 40+71?', '61', '111'), ('was ist 71+40?', '61', '111')]
+step  24500 loss 0.0002 | max s 7.8 w 61.5 z 2.0 x 107.9 | 2086s
+step  25000 loss 0.0001 | max s 8.4 w 70.6 z 2.2 x 88.5 | 2128s
+step  25500 loss 0.0002 | max s 8.5 w 72.1 z 2.1 x 71.7 | 2169s
+step  26000 loss 0.0001 | max s 8.6 w 74.0 z 1.9 x 55.4 | 2210s
+  [eval 26000] held-out addition 0.9975 | train-pair addition 1.0000 | wrong: [('was ist 40+70?', '60', '110'), ('was ist 70+40?', '60', '110'), ('was ist 48+48?', '86', '96'), ('was ist 48+49?', '87', '97'), ('was ist 49+48?', '87', '97')]
+step  26500 loss 0.0001 | max s 8.4 w 71.2 z 2.2 x 74.8 | 2267s
+step  27000 loss 0.0001 | max s 8.6 w 74.4 z 2.0 x 64.7 | 2308s
+step  27500 loss 0.0001 | max s 8.6 w 73.3 z 2.1 x 72.3 | 2350s
+step  28000 loss 0.0001 | max s 8.6 w 73.8 z 2.0 x 71.3 | 2390s
+  [eval 28000] held-out addition 0.9965 | train-pair addition 1.0000 | wrong: [('was ist 30+70?', '60', '100'), ('was ist 70+30?', '60', '100'), ('was ist 40+70?', '60', '110'), ('was ist 70+40?', '60', '110'), ('was ist 48+48?', '86', '96')]
+step  28500 loss 0.0001 | max s 7.8 w 60.9 z 2.0 x 95.1 | 2492s
+step  29000 loss 0.0001 | max s 7.9 w 63.1 z 2.3 x 55.0 | 2534s
+step  29500 loss 0.0001 | max s 7.9 w 62.3 z 2.2 x 70.1 | 2576s
+step  30000 loss 0.0001 | max s 7.9 w 62.4 z 2.2 x 64.6 | 2617s
+  [eval 30000] held-out addition 0.9975 | train-pair addition 1.0000 | wrong: [('was ist 40+70?', '60', '110'), ('was ist 70+40?', '60', '110'), ('was ist 48+48?', '86', '96'), ('was ist 48+49?', '87', '97'), ('was ist 49+48?', '87', '97')]
+{
+ "arch": "cipherformer2",
+ "vocab_size": 59,
+ "n_layers": 2,
+ "hidden": 1024,
+ "max_len": 64,
+ "kappa": 0.015625,
+ "d": 64,
+ "n_sig": 5,
+ "rev": true,
+ "coupling": true,
+ "steps": 30000,
+ "lr": 0.002,
+ "wd": 0.1,
+ "batch": 512,
+ "heldout_pairs": 1010,
+ "train_pairs": 4040,
+ "heldout_addition_exact": 0.9975074775672981,
+ "heldout_addition_random_template": 0.996039603960396,
+ "all_pairs_addition_exact": 0.9995,
+ "others_exact": 1.0,
+ "others_per_category": {
+  "smalltalk": 1.0,
+  "hauptstadt": 1.0,
+  "farbe": 1.0,
+  "gegenteil": 1.0,
+  "wochentag": 1.0,
+  "zählen": 1.0,
+  "parität": 1.0,
+  "minus": 1.0,
+  "vergleich": 1.0
+ },
+ "wrong_heldout": [
+  [
+   "was ist 40+70?",
+   "60",
+   "110"
+  ],
+  [
+   "was ist 70+40?",
+   "60",
+   "110"
+  ],
+  [
+   "was ist 48+48?",
+   "86",
+   "96"
+  ],
+  [
+   "was ist 48+49?",
+   "87",
+   "97"
+  ],
+  [
+   "was ist 49+48?",
+   "87",
+   "97"
+  ]
+ ],
+ "wrong_all": [
+  [
+   "was ist 40+70?",
+   "60",
+   "110"
+  ],
+  [
+   "was ist 70+40?",
+   "60",
+   "110"
+  ],
+  [
+   "was ist 48+48?",
+   "86",
+   "96"
+  ],
+  [
+   "was ist 48+49?",
+   "87",
+   "97"
+  ],
+  [
+   "was ist 49+48?",
+   "87",
+   "97"
+  ]
+ ],
+ "wrong_others": [],
+ "act_stats": {
+  "s": 8.84235954284668,
+  "w": 78.18732452392578,
+  "z": 2.2441020011901855,
+  "x": 69.36392211914062
+ },
+ "train_seconds": 2805.0895717144012,
+ "params": 166592
+}

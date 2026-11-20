@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+logs/
+.venv/
+
+# graphify: local caches, dated backups and machine-specific paths (graph.json, graph.html and GRAPH_REPORT.md are shared)
+graphify-out/cache/
+graphify-out/20*/
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/.graphify_labels.pending.json
+graphify-out/.graphify_labels.json.sig

@@ -1,0 +1,18 @@
+INFO:     Started server process [1338861]
+INFO:     Waiting for application startup.
+[client] connected to http://127.0.0.1:8710: session 3f0c0f6d7721 | eval keys 225.0 MB | handshake 0.8s
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8711 (Press CTRL+C to quit)
+INFO:     127.0.0.1:44694 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44702 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44706 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51584 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51590 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60594 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60596 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60612 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46232 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1338861]

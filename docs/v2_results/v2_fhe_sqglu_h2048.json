@@ -1,0 +1,32 @@
+{
+  "rows": [
+    {
+      "prompt": "random",
+      "tokens": 12,
+      "max_err": 0.0001486060348776519
+    }
+  ],
+  "sec_per_prompt_token": null,
+  "sec_per_generated_token": 0.4040158788363139,
+  "median_generated": 0.4030371904373169,
+  "max_logit_err": 0.0001486060348776519,
+  "eval_key_mb": 224.984746,
+  "n_rot_keys": 25,
+  "warmup_s": 1.2711727619171143,
+  "plaintext_cache_mb": 346.15234375,
+  "rss_total_mb": 1577.2578125,
+  "maxrss_mb": 1576.79296875,
+  "ring_dim": 16384,
+  "scale_bits": 33,
+  "first_mod_bits": 45,
+  "counters": {
+    "rot": 694,
+    "rot_hoisted": 585,
+    "ptmul": 7488,
+    "ctmul": 104,
+    "encode": 579
+  },
+  "omp": "8",
+  "cpus": 8,
+  "ct_up_mb": 2.360987
+}

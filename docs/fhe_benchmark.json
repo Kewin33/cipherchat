@@ -1,0 +1,74 @@
+{
+  "rows": [
+    {
+      "prompt": "hallo",
+      "fhe": "hallo!",
+      "plain": "hallo!",
+      "match": true,
+      "seconds": 31.8,
+      "tokens": 13
+    },
+    {
+      "prompt": "was ist 5+3?",
+      "fhe": "8",
+      "plain": "8",
+      "match": true,
+      "seconds": 31.7,
+      "tokens": 15
+    },
+    {
+      "prompt": "ist 4 gerade?",
+      "fhe": "ja.",
+      "plain": "ja.",
+      "match": true,
+      "seconds": 39.1,
+      "tokens": 18
+    },
+    {
+      "prompt": "hauptstadt von polen?",
+      "fhe": "warschau.",
+      "plain": "warschau.",
+      "match": true,
+      "seconds": 72.1,
+      "tokens": 32
+    },
+    {
+      "prompt": "gegenteil von laut?",
+      "fhe": "leise.",
+      "plain": "leise.",
+      "match": true,
+      "seconds": 61.0,
+      "tokens": 27
+    },
+    {
+      "prompt": "danke",
+      "fhe": "gern!",
+      "plain": "gern!",
+      "match": true,
+      "seconds": 27.6,
+      "tokens": 12
+    },
+    {
+      "prompt": "zähl bis 3",
+      "fhe": "1 2 3",
+      "plain": "1 2 3",
+      "match": true,
+      "seconds": 38.2,
+      "tokens": 17
+    },
+    {
+      "prompt": "ist 2 größer als 9?",
+      "fhe": "nein.",
+      "plain": "nein.",
+      "match": true,
+      "seconds": 57.1,
+      "tokens": 26
+    }
+  ],
+  "all_match": true,
+  "sec_per_prompt_token": 2.07198138322149,
+  "sec_per_generated_token": 2.6314853678146997,
+  "ciphertext_up_mb": 2.360987,
+  "logits_down_mb": 0.525757,
+  "cpu_count": 2
+}
