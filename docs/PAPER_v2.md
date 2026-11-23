@@ -122,6 +122,8 @@ Hidden 1.024 statt 8.192: 0,325 s/Token – die volle Slot-Breite kostet nur ~10
 
 Die gegatete Variante (`sqglu`, Hidden 2.048), die für die fehlerfreie Addition nötig ist (§6.4), kostet unter CKKS **0,404 s/Token** (8 P-Kerne, gemessen während paralleler GPU-Trainings) bei einem Logit-Fehler von 1,5·10⁻⁴.
 
+**GPU (Projektion, nicht gemessen).** Ein GPU-Backend fehlt noch. Rechnet man die gezählten Operationen der `sqglu`-Variante (54 + 45 gehoistete Rotationen, 576 PtMults, 8 ct×ct) mit FIDESlib-Kosten hoch, skaliert auf N = 2¹⁴ und 9 Limbs und nach unten durch die Kernel-Startzeit begrenzt, ergeben sich **~8–20 ms pro Token auf einer RTX 5080 (~50–120 Tokens/s)**.
+
 ### 6.3 Speicher
 
 | Größe | v1 | v2 | Bemerkung |
