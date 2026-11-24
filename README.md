@@ -121,6 +121,24 @@ python scripts/v2_fhe_test.py --weights weights/cf2_add.npz --heldout 40     # v
 CIPHERCHAT_WEIGHTS=weights/cf2_add.npz ./run_demo.sh         # Server/Client erkennen v2 automatisch
 ```
 
+## v3: Qwen2.5-0.5B nicht-interaktiv auf der GPU (Referenzmessung)
+
+Details: `docs/V3.md`. Ein echtes 0,5B-Modell läuft verschlüsselt. Der Server rechnet **alles** selbst, auch RMSNorm,
+Power-Softmax und Aktivierung, mit CKKS-Bootstrapping (PhantomFHE + NEXUS-CUDA, N = 2¹⁶, 128 Bit) auf einer RTX 5080.
+Pro Token geht ein Ciphertext hin und einer zurück.
+* Bootstrapping 159 ms, Schlüssel ~7 GB, ~1,5 s pro Schicht → ~36 s pro Token (72 % Bootstrapping).
+* Engine exakt geprüft: numpy-Slot-Simulation gegen float64-Referenz, Fehler 1e-8 über 24 Schichten.
+* Ein öffentliches Zwei-Token-Präfix verhindert Qwens „massive activations“. Die Division der Power-Softmax ist unter
+  CKKS numerisch heikel (Nenner über 4–5 Dekaden), daher zusätzlich eine divisionsfreie Variante.
+
+```bash
+bash scripts/v3_setup_remote.sh                               # NTL + NEXUS + Build (GPU-Rechner)
+python train_v3.py --name q05_pos --norm pos --steps 6000      # Distillation (Meilenstein 2)
+PYTHONPATH=build_v3 python scripts/v3_check.py --ckpt weights/v3/q05_pos.pt --backend phantom --tokens 3 \
+    --bounds weights/v3/q05_pos_bounds.json                    # verschlüsselt, gegen float64-Referenz
+V3_CKPT=weights/v3/q05_pos.pt bash run_demo_all.sh             # UI mit Umschalter v1 / v2 / v3
+```
+
 ## Projektstruktur
 ```
 cipherchat/vocab.py          Zeichen-Vokabular (≤ 64)
@@ -131,7 +149,10 @@ cipherchat/fhe_common.py     CKKS-Parameter, Slot-Layouts, BSGS-Vektoren, Serial
 cipherchat/fhe_engine.py     homomorphe Inferenz (Server)
 cipherchat/client_crypto.py  Schlüssel, Verschlüsselung, Entschlüsselung (Client)
 server/app.py                FastAPI-Server: bekommt nur Ciphertexts + Eval-Keys
-client/app.py, client/static Client-Proxy + Chat-UI ("Was der Server sieht")
+client/app.py, client/static Client-Proxy + Chat-UI ("Was der Server sieht"), Umschalter v1 / v2 / v3
+cipherchat/v2/               v2-Engine (slot-gesättigt) + CipherFormer2
+cipherchat/v3/               v3: Qwen2.5-Umbau, Newton-Näherungen, Engine3, C++/CUDA-Backend (fhe/), config.json
+server/app_v3.py             v3-Server (GPU)
 train.py                     Training
 experiments/                 AES-Lernbarkeits-Experiment
 ```

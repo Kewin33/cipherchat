@@ -1,13 +1,7 @@
 {
-  "0": "FHE Server & CKKS Parameters",
-  "2": "Client Crypto & Chat Client",
-  "3": "AES Learnability Experiment",
   "4": "Slot Layouts (Generalized BSGS)",
   "6": "v2 Engine Decoding Step",
-  "7": "v1 FHE Engine",
-  "10": "v2 Numpy Simulator & Research Log",
   "11": "v1 Reference & Model",
-  "13": "v2 Paper (docs)",
   "14": "v2 Package",
   "15": "Demo Launcher",
   "16": "Package Init"

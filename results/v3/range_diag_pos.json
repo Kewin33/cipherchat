@@ -1,0 +1,26 @@
+{
+ "guard": {
+  "ppl": 42.18603696747064,
+  "broken_chunks": 0,
+  "chunks": 2000
+ },
+ "out_of_range": {
+  "norm": {
+   "frac": 5.787037037037037e-07,
+   "worst_excess": 1.258219838142395
+  },
+  "act": {
+   "frac": 1.0512800012183236e-05,
+   "worst_excess": 3.0301434993743896
+  },
+  "attn": {
+   "frac": 0.0,
+   "worst_excess": 0.0
+  }
+ },
+ "fhe": {
+  "ppl": 44.57887000706754,
+  "broken_chunks": 65,
+  "chunks": 2000
+ }
+}

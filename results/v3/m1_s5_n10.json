@@ -1,0 +1,175 @@
+{
+ "bootstrap": {
+  "logn10": {
+   "median_ms": 159.07669401168823,
+   "runs": [
+    {
+     "levels_left": 10,
+     "max_err": 6.198535466128696e-06,
+     "ms": 159.07669401168823,
+     "phases": {
+      "Coeff-to-slot": 45.0,
+      "Modular reduction": 71.0,
+      "Modulus Raising": 0.0,
+      "Slot-to-coeff": 36.0,
+      "Subsum": 5.0
+     }
+    },
+    {
+     "levels_left": 10,
+     "max_err": 6.198605728924278e-06,
+     "ms": 158.82084596157074,
+     "phases": {
+      "Coeff-to-slot": 45.0,
+      "Modular reduction": 71.0,
+      "Modulus Raising": 0.0,
+      "Slot-to-coeff": 36.0,
+      "Subsum": 5.0
+     }
+    },
+    {
+     "levels_left": 10,
+     "max_err": 6.1985810801967745e-06,
+     "ms": 159.31285405158997,
+     "phases": {
+      "Coeff-to-slot": 45.0,
+      "Modular reduction": 71.0,
+      "Modulus Raising": 0.0,
+      "Slot-to-coeff": 36.0,
+      "Subsum": 5.0
+     }
+    }
+   ]
+  }
+ },
+ "keys": {
+  "boot_keys": 35,
+  "galois_mb": 6784.0,
+  "gen_s": 0.06623332607746124,
+  "mb_per_key": 161.52380952380952,
+  "rotation_keys": 42
+ },
+ "matvec_1024": {
+  "runs": [
+   {
+    "matvec_err": 1.041610028229556e-07,
+    "matvec_ms": 24.81077790260315,
+    "matvec_split": {
+     "encode": 17.696961283683777,
+     "mult": 1.3156037330627441,
+     "rescale": 0.38789188861846924,
+     "rot": 5.352852940559387
+    },
+    "to_offset_err": 1.4485056765156656e-07,
+    "to_offset_ms": 17.610260009765625,
+    "to_offset_split": {
+     "encode": 12.88809847831726,
+     "mult": 1.1930859088897705,
+     "rescale": 0.3492680788040161,
+     "rot": 3.125537157058716
+    }
+   },
+   {
+    "matvec_err": 1.0480306900095826e-07,
+    "matvec_ms": 24.756744980812073,
+    "matvec_split": {
+     "encode": 17.65272355079651,
+     "mult": 1.3097810745239258,
+     "rescale": 0.38539600372314453,
+     "rot": 5.352934956550598
+    },
+    "to_offset_err": 1.456245463105077e-07,
+    "to_offset_ms": 17.64804995059967,
+    "to_offset_split": {
+     "encode": 12.918340921401978,
+     "mult": 1.1987696886062622,
+     "rescale": 0.3507649898529053,
+     "rot": 3.1262691020965576
+    }
+   },
+   {
+    "matvec_err": 1.037790302582664e-07,
+    "matvec_ms": 24.768589973449707,
+    "matvec_split": {
+     "encode": 17.651097059249878,
+     "mult": 1.3116669654846191,
+     "rescale": 0.38404393196105957,
+     "rot": 5.363656163215637
+    },
+    "to_offset_err": 1.444992455690297e-07,
+    "to_offset_ms": 17.67861807346344,
+    "to_offset_split": {
+     "encode": 12.957011818885803,
+     "mult": 1.1924210786819458,
+     "rescale": 0.34963202476501465,
+     "rot": 3.122251033782959
+    }
+   }
+  ]
+ },
+ "ops": {
+  "level10": {
+   "ct_mb": 11.0,
+   "ctct_relin_rescale_ms": 0.4888139009475708,
+   "ctpt_ms": 0.017771852016448975,
+   "encode_ms": 0.23926115036010742,
+   "rot_ms": 0.3922492504119873
+  },
+  "level2": {
+   "ct_mb": 3.0,
+   "ctct_relin_rescale_ms": 0.1506085515022278,
+   "ctpt_ms": 0.006792247295379639,
+   "encode_ms": 0.2363721489906311,
+   "rot_ms": 0.11436750292778015
+  }
+ },
+ "params": {
+  "bits": [
+   51,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51
+  ],
+  "bound_128": 1546,
+  "hamming_weight": 192,
+  "logN": 16,
+  "log_qp": 1480,
+  "secure_128": true
+ },
+ "vram_mb": {
+  "baseline": 694.8125,
+  "boot_lt_coeffs": 7894.8125,
+  "context": 790.8125,
+  "end": 8598.8125,
+  "galois_keys": 7894.8125,
+  "peak_pool": 7840.0,
+  "peak_pool_after_boot": 7840.0,
+  "sk_pk_relin": 1110.8125
+ }
+}

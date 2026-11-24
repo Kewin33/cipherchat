@@ -1,0 +1,10 @@
+{
+ "note": "scripts/v3_range_diag.py --ckpt weights/v3/q05_div16.pt --chunks 300, with attention denominator counting",
+ "guard": {"ppl": 39.407398381317, "broken_chunks": 0, "chunks": 300},
+ "out_of_range": {
+  "norm": {"frac": 0.0, "worst_excess": 0.7500397562980652},
+  "act": {"frac": 8.778229935370834e-06, "worst_excess": 2.3005387783050537},
+  "attn": {"frac": 0.004098954396573444, "worst_excess": 470.95977783203125}
+ },
+ "fhe": {"ppl": null, "broken_chunks": 300, "chunks": 300}
+}
