@@ -1,0 +1,36 @@
+{
+  "_doc": "Single source of truth for CipherChat v3 (Python training/export AND C++/CUDA FHE engine). See docs/V3.md.",
+  "model": {
+    "base": "Qwen/Qwen2.5-0.5B",
+    "d_model": 896,
+    "n_layers": 24,
+    "n_heads": 14,
+    "n_kv_heads": 2,
+    "head_dim": 64,
+    "d_ff": 4864,
+    "vocab_size": 151936,
+    "rope_theta": 1000000.0,
+    "max_context": 128,
+    "public_prefix": ["<|endoftext|>", "\n"]
+  },
+  "approx": {
+    "softmax": {"type": "power", "p": 2, "norm": "div"},
+    "act": {"type": "poly", "degree": 2},
+    "rmsnorm": {"newton_iters": 2},
+    "attn_inverse": {"newton_iters": 3}
+  },
+  "ckks": {
+    "logN": 16,
+    "scale_bits": 46,
+    "base_bits": 51,
+    "compute_levels": 10,
+    "boot_bits": 51,
+    "boot_levels": 14,
+    "special_bits": 51,
+    "special_count": 5,
+    "hamming_weight": 192,
+    "security_note": "log QP must stay <= 1546 for h=192 (Lattigo N16QP1546H192), <= 1772 for dense ternary (HE standard, 128 bit)",
+    "boot": {"loge": 10, "K": 25, "deg": 59, "scale_factor": 2, "inverse_deg": 1},
+    "block": 1024
+  }
+}

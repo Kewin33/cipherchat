@@ -3,6 +3,8 @@ services:
   server:
     build: .
     command: uvicorn server.app:app --host 0.0.0.0 --port 8000
+    environment:
+      - CIPHERCHAT_WEIGHTS=weights/cf2_rev_cpl_sqglu_h2048.npz
     ports: ["8000:8000"]
   client:
     build: .

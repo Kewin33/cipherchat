@@ -125,6 +125,19 @@ Token, 0,231 s pro Prompt-Token, Logit-Fehler Median 0,0035 / max. 0,15, RSS 1,1
 „23 plus 45“ → 68 (3,8 s), „hauptstadt von polen?“ → warschau. (9,2 s; v1 auf 2 vCPU: 72 s), Server 0,26–0,30 s/Token.
 Rohdaten: `docs/v2_results/`.
 
+### GPU (RTX 5080) – Projektion, nicht gemessen
+
+Ein GPU-Backend für die v2-Engine gibt es noch nicht; die Zahl ist eine Hochrechnung (Stand 23.11.2026).
+Gezählte Operationen pro Token (`sqglu`, 2 Layer): 54 Rotationen + 45 gehoistete, 576 PtMults, 8 ct×ct, ~230 Additionen.
+Kosten pro Operation aus FIDESlib (RTX 4090, N = 2¹⁶, 30 Limbs: Rotation 1,1 ms) auf N = 2¹⁴ mit 9 Limbs skaliert
+(Faktor ~14) und nach unten durch die Kernel-Startzeit begrenzt: Rotation 50–100 µs, gehoistet 25–50 µs,
+PtMult 5–15 µs, ct×ct 60–110 µs, Addition 5–10 µs.
+
+**Ergebnis: ~8–20 ms pro Token Serverrechnung, also ~50–120 Tokens/s** (CPU, 8 P-Kerne: 342 ms). Ende-zu-Ende
+begrenzen dann Netzwerk-Rundreise, Upload (2,36 MB pro Token) und Verschlüsseln beim Client. Bestätigen lässt sich
+das erst mit einem echten GPU-Backend (FIDESlib oder Phantom hinter `OpenFHEBackend`; die RTX 5080 braucht dafür
+ein neueres nvcc als das installierte 12.0).
+
 ## 5. Offene Punkte
 
 - GPU-Backend (FIDESlib/Phantom): Projektion ~10–20 ms/Token auf RTX-4090/5080-Klasse (aus FIDESlib-Primitiven

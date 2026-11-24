@@ -1,0 +1,145 @@
+{
+ "bootstrap": {
+  "logn13": {
+   "median_ms": 221.87307691574097,
+   "runs": [
+    {
+     "levels_left": 10,
+     "max_err": 4.991714393054458e-06,
+     "ms": 221.87307691574097,
+     "phases": {
+      "Coeff-to-slot": 78.0,
+      "Modular reduction": 70.0,
+      "Modulus Raising": 0.0,
+      "Slot-to-coeff": 69.0,
+      "Subsum": 2.0
+     }
+    },
+    {
+     "levels_left": 10,
+     "max_err": 4.991817951105482e-06,
+     "ms": 221.48469400405884,
+     "phases": {
+      "Coeff-to-slot": 78.0,
+      "Modular reduction": 70.0,
+      "Modulus Raising": 0.0,
+      "Slot-to-coeff": 69.0,
+      "Subsum": 2.0
+     }
+    }
+   ]
+  }
+ },
+ "keys": {
+  "boot_keys": 43,
+  "galois_mb": 8096.0,
+  "gen_s": 0.08007547497749329,
+  "mb_per_key": 158.7450980392157,
+  "rotation_keys": 51
+ },
+ "matvec_1024": {
+  "runs": [
+   {
+    "matvec_err": 1.9553652808035338e-08,
+    "matvec_ms": 24.827502012252808,
+    "matvec_split": {
+     "encode": 17.646162629127502,
+     "mult": 1.3086737394332886,
+     "rescale": 0.45898890495300293,
+     "rot": 5.35337507724762
+    },
+    "to_offset_err": 2.7701647753453074e-08,
+    "to_offset_ms": 17.656792998313904,
+    "to_offset_split": {
+     "encode": 12.920466184616089,
+     "mult": 1.2012001276016235,
+     "rescale": 0.3570019006729126,
+     "rot": 3.1214271783828735
+    }
+   },
+   {
+    "matvec_err": 2.0116285859295147e-08,
+    "matvec_ms": 24.76926290988922,
+    "matvec_split": {
+     "encode": 17.674011707305908,
+     "mult": 1.3118633031845093,
+     "rescale": 0.38243818283081055,
+     "rot": 5.341577172279358
+    },
+    "to_offset_err": 2.8219666159401413e-08,
+    "to_offset_ms": 17.618995904922485,
+    "to_offset_split": {
+     "encode": 12.879019260406494,
+     "mult": 1.2070764303207397,
+     "rescale": 0.3544360399246216,
+     "rot": 3.122525930404663
+    }
+   }
+  ]
+ },
+ "ops": {
+  "level10": {
+   "ct_mb": 11.0,
+   "ctct_relin_rescale_ms": 0.48995094895362856,
+   "ctpt_ms": 0.017744046449661256,
+   "encode_ms": 0.2361411988735199,
+   "rot_ms": 0.3904417037963867
+  },
+  "level2": {
+   "ct_mb": 3.0,
+   "ctct_relin_rescale_ms": 0.15098174810409545,
+   "ctpt_ms": 0.006782752275466919,
+   "encode_ms": 0.23503909707069398,
+   "rot_ms": 0.11455159783363342
+  }
+ },
+ "params": {
+  "bits": [
+   51,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   46,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51
+  ],
+  "bound_128": 1546,
+  "hamming_weight": 192,
+  "logN": 16,
+  "log_qp": 1480,
+  "secure_128": true
+ },
+ "vram_mb": {
+  "baseline": 694.8125,
+  "boot_lt_coeffs": 9206.8125,
+  "context": 790.8125,
+  "end": 9942.8125,
+  "galois_keys": 9206.8125,
+  "peak_pool": 9184.0,
+  "peak_pool_after_boot": 9184.0,
+  "sk_pk_relin": 1110.8125
+ }
+}

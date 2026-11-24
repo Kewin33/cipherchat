@@ -1,1 +1,8 @@
-{"1": "Datasets & v1 Model Training", "10": "v2 Numpy Simulator & Research Log", "11": "v1 Reference & Model", "12": "v2 Client Keys", "2": "Client Crypto & Chat Client", "3": "AES Learnability Experiment", "5": "v2 Addition Task & Tokenization", "6": "v2 Engine Decoding Step", "7": "v1 FHE Engine", "8": "v2 OpenFHE Backend", "9": "CipherFormer2 Model & Reference (v2)", "0": "FHE Server & CKKS Parameters", "4": "Slot Layouts (Generalized BSGS)", "13": "v2 Paper (docs)", "14": "v2 Package", "15": "Demo Launcher", "16": "Package Init"}
+{
+  "4": "Slot Layouts (Generalized BSGS)",
+  "6": "v2 Engine Decoding Step",
+  "11": "v1 Reference & Model",
+  "14": "v2 Package",
+  "15": "Demo Launcher",
+  "16": "Package Init"
+}

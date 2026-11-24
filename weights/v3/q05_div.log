@@ -1,0 +1,67 @@
+teacher wikitext-2 ppl (ctx 128, 200 chunks): 29.293
+rmsnorm z = m / m_ref: min 0.316 max 3.66; inv-sqrt on [0.186, 6.02]: degree 1, 4 Newton, depth 9, rel err 7.17e-04
+student ppl right after calibration (no training): nan
+step 0 mix 0.00 loss 0.0026 (ema 0.0026) kl 0.0025 hid 0.0010 range 1.92e-06 7.18 s/step
+step 1 mix 0.00 loss 0.0024 (ema 0.0026) kl 0.0023 hid 0.0008 range 2.70e-06 3.84 s/step
+step 2 mix 0.00 loss 0.0025 (ema 0.0026) kl 0.0025 hid 0.0008 range 1.99e-06 2.71 s/step
+step 3 mix 0.00 loss 0.0021 (ema 0.0026) kl 0.0021 hid 0.0007 range 3.16e-06 2.15 s/step
+step 4 mix 0.01 loss 0.0024 (ema 0.0026) kl 0.0023 hid 0.0007 range 3.30e-06 1.81 s/step
+step 50 mix 0.05 loss 0.0122 (ema 0.0048) kl 0.0119 hid 0.0023 range 4.13e-06 0.59 s/step
+step 100 mix 0.10 loss 0.0268 (ema 0.0214) kl 0.0261 hid 0.0073 range 6.79e-06 0.53 s/step
+step 150 mix 0.15 loss 0.0916 (ema 0.0548) kl 0.0898 hid 0.0174 range 3.71e-06 0.51 s/step
+step 200 mix 0.20 loss 0.0736 (ema 0.0797) kl 0.0716 hid 0.0205 range 3.29e-06 0.50 s/step
+step 250 mix 0.25 loss 0.1137 (ema 0.1116) kl 0.1106 hid 0.0303 range 7.75e-06 0.49 s/step
+step 300 mix 0.30 loss 0.0932 (ema 0.1216) kl 0.0904 hid 0.0278 range 7.48e-06 0.49 s/step
+step 350 mix 0.35 loss 0.1700 (ema 0.1318) kl 0.1654 hid 0.0462 range 5.39e-06 0.48 s/step
+step 400 mix 0.40 loss 0.3146 (ema 0.1648) kl 0.3059 hid 0.0871 range 6.74e-06 0.48 s/step
+step 450 mix 0.45 loss 0.3599 (ema 0.1748) kl 0.3478 hid 0.1210 range 9.58e-06 0.48 s/step
+step 500 mix 0.50 loss 0.2411 (ema 0.1810) kl 0.2349 hid 0.0617 range 5.32e-06 0.48 s/step
+step 550 mix 0.55 loss 0.2360 (ema 0.1931) kl 0.2289 hid 0.0705 range 4.01e-06 0.47 s/step
+step 600 mix 0.60 loss 0.2192 (ema 0.2331) kl 0.2123 hid 0.0685 range 1.62e-06 0.47 s/step
+step 650 mix 0.65 loss 0.2569 (ema 0.2447) kl 0.2496 hid 0.0733 range 3.44e-06 0.47 s/step
+step 700 mix 0.70 loss 0.1660 (ema 0.2598) kl 0.1583 hid 0.0765 range 8.25e-06 0.47 s/step
+step 750 mix 0.75 loss 0.5209 (ema 0.2939) kl 0.5072 hid 0.1364 range 4.79e-06 0.47 s/step
+step 800 mix 0.80 loss 0.2441 (ema 0.3236) kl 0.2343 hid 0.0977 range 1.96e-06 0.47 s/step
+step 850 mix 0.85 loss 0.3135 (ema 0.3394) kl 0.3023 hid 0.1125 range 3.31e-06 0.47 s/step
+step 900 mix 0.90 loss 0.2487 (ema 0.3558) kl 0.2382 hid 0.1055 range 1.81e-06 0.47 s/step
+step 950 mix 0.95 loss 0.3724 (ema 0.4177) kl 0.3575 hid 0.1488 range 3.36e-06 0.47 s/step
+== step 1000: student ppl nan (teacher 29.293)
+step 1000 mix 1.00 loss 0.4097 (ema 0.4472) kl 0.3946 hid 0.1510 range 1.17e-06 0.49 s/step
+step 1050 mix 1.00 loss 0.7333 (ema 0.5192) kl 0.7141 hid 0.1916 range 1.41e-05 0.49 s/step
+step 1100 mix 1.00 loss 0.3680 (ema 0.5398) kl 0.3536 hid 0.1433 range 3.84e-06 0.48 s/step
+step 1150 mix 1.00 loss 0.3757 (ema 0.4666) kl 0.3605 hid 0.1517 range 1.17e-05 0.48 s/step
+step 1200 mix 1.00 loss 0.3615 (ema 0.4316) kl 0.3468 hid 0.1468 range 3.10e-06 0.48 s/step
+step 1250 mix 1.00 loss 0.3496 (ema 0.4083) kl 0.3366 hid 0.1294 range 2.67e-06 0.48 s/step
+step 1300 mix 1.00 loss 0.7692 (ema 0.4037) kl 0.7409 hid 0.2832 range 8.42e-06 0.48 s/step
+step 1350 mix 1.00 loss 0.3737 (ema 0.3862) kl 0.3590 hid 0.1461 range 1.89e-06 0.48 s/step
+step 1400 mix 1.00 loss 0.4003 (ema 0.3959) kl 0.3866 hid 0.1365 range 2.55e-06 0.48 s/step
+step 1450 mix 1.00 loss 0.4081 (ema 0.3889) kl 0.3931 hid 0.1499 range 5.01e-06 0.48 s/step
+step 1500 mix 1.00 loss 0.4555 (ema 0.3800) kl 0.4392 hid 0.1633 range 4.51e-06 0.48 s/step
+step 1550 mix 1.00 loss 0.2069 (ema 0.3495) kl 0.1966 hid 0.1026 range 1.90e-06 0.48 s/step
+step 1600 mix 1.00 loss 0.3108 (ema 0.3673) kl 0.2980 hid 0.1281 range 4.07e-06 0.47 s/step
+step 1650 mix 1.00 loss 0.2963 (ema 0.3559) kl 0.2844 hid 0.1197 range 2.29e-06 0.47 s/step
+step 1700 mix 1.00 loss 0.3552 (ema 0.3537) kl 0.3409 hid 0.1433 range 1.84e-06 0.47 s/step
+step 1750 mix 1.00 loss 0.3507 (ema 0.3649) kl 0.3373 hid 0.1345 range 2.69e-06 0.47 s/step
+step 1800 mix 1.00 loss 1.4848 (ema 0.4314) kl 1.4516 hid 0.3319 range 2.99e-06 0.47 s/step
+step 1850 mix 1.00 loss 0.3852 (ema 0.3733) kl 0.3719 hid 0.1331 range 2.53e-06 0.47 s/step
+step 1900 mix 1.00 loss 0.2298 (ema 0.3706) kl 0.2196 hid 0.1023 range 2.40e-06 0.47 s/step
+step 1950 mix 1.00 loss 0.2045 (ema 0.3426) kl 0.1942 hid 0.1033 range 2.95e-06 0.47 s/step
+== step 2000: student ppl 46.442 (teacher 29.293)
+step 2000 mix 1.00 loss 0.2800 (ema 0.3579) kl 0.2697 hid 0.1023 range 6.93e-06 0.48 s/step
+step 2050 mix 1.00 loss 0.2025 (ema 0.3398) kl 0.1922 hid 0.1030 range 1.96e-06 0.48 s/step
+step 2100 mix 1.00 loss 0.6809 (ema 0.3261) kl 0.6582 hid 0.2268 range 3.30e-05 0.48 s/step
+step 2150 mix 1.00 loss 0.3587 (ema 0.3187) kl 0.3463 hid 0.1241 range 1.60e-05 0.48 s/step
+step 2200 mix 1.00 loss 0.3436 (ema 0.3108) kl 0.3304 hid 0.1322 range 3.88e-06 0.48 s/step
+step 2250 mix 1.00 loss 0.3415 (ema 0.3009) kl 0.3293 hid 0.1223 range 2.37e-06 0.48 s/step
+step 2300 mix 1.00 loss 0.4552 (ema 0.2951) kl 0.4398 hid 0.1535 range 2.57e-06 0.48 s/step
+step 2350 mix 1.00 loss 0.1878 (ema 0.2499) kl 0.1776 hid 0.1026 range 1.83e-06 0.47 s/step
+attention denominators (normalised): min 1.6e-08 max 2.79e+03; inverse on [0.0105, 418]: degree 3, 3 Newton, depth 9, rel err 9.96e-01
+step 2400 mix 1.00 loss 3.3170 (ema 0.3485) kl 3.1968 hid 0.6225 range 5.80e-02 0.48 s/step
+step 2450 mix 1.00 loss 0.3362 (ema 0.5642) kl 0.3076 hid 0.1787 range 1.07e-02 0.48 s/step
+step 2500 mix 1.00 loss 0.3724 (ema 0.4436) kl 0.3457 hid 0.1709 range 9.59e-03 0.48 s/step
+step 2550 mix 1.00 loss 0.2828 (ema 0.3932) kl 0.2615 hid 0.1460 range 6.72e-03 0.48 s/step
+step 2600 mix 1.00 loss 0.6391 (ema 0.3944) kl 0.6115 hid 0.2199 range 5.62e-03 0.48 s/step
+step 2650 mix 1.00 loss 0.2422 (ema 0.3420) kl 0.2238 hid 0.1211 range 6.30e-03 0.48 s/step
+step 2700 mix 1.00 loss 0.2728 (ema 0.3197) kl 0.2541 hid 0.1319 range 5.45e-03 0.48 s/step
+step 2750 mix 1.00 loss 0.3554 (ema 0.3116) kl 0.3355 hid 0.1351 range 6.44e-03 0.48 s/step
+step 2800 mix 1.00 loss 0.2610 (ema 0.3160) kl 0.2437 hid 0.1202 range 5.28e-03 0.48 s/step

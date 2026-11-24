@@ -1,0 +1,91 @@
+teacher wikitext-2 ppl (ctx 128, 200 chunks): 29.278
+rmsnorm z = m / m_ref: min 0.316 max 3.66; inv-sqrt on [0.186, 6.02]: degree 1, 4 Newton, depth 10, rel err 7.17e-04
+student ppl right after calibration (no training): nan
+step 0 mix 0.00 loss 0.0026 (ema 0.0026) kl 0.0025 hid 0.0010 range 0.00e+00 3.84 s/step
+step 1 mix 0.00 loss 0.0023 (ema 0.0026) kl 0.0022 hid 0.0008 range 0.00e+00 2.14 s/step
+step 2 mix 0.00 loss 0.0027 (ema 0.0026) kl 0.0026 hid 0.0008 range 0.00e+00 1.57 s/step
+step 3 mix 0.00 loss 0.0020 (ema 0.0026) kl 0.0020 hid 0.0007 range 0.00e+00 1.29 s/step
+step 4 mix 0.01 loss 0.0023 (ema 0.0026) kl 0.0022 hid 0.0007 range 0.00e+00 1.11 s/step
+step 50 mix 0.05 loss 0.0105 (ema 0.0047) kl 0.0103 hid 0.0022 range 0.00e+00 0.50 s/step
+step 100 mix 0.10 loss 0.0338 (ema 0.0226) kl 0.0330 hid 0.0085 range 0.00e+00 0.46 s/step
+step 150 mix 0.15 loss 0.1286 (ema 0.0604) kl 0.1259 hid 0.0273 range 0.00e+00 0.45 s/step
+step 200 mix 0.20 loss 0.0877 (ema 0.0882) kl 0.0855 hid 0.0221 range 0.00e+00 0.45 s/step
+step 236: non-finite loss, skipped
+step 250 mix 0.25 loss 0.1076 (ema 0.1197) kl 0.1050 hid 0.0263 range 0.00e+00 0.44 s/step
+step 300 mix 0.30 loss 0.1707 (ema 0.1315) kl 0.1673 hid 0.0340 range 0.00e+00 0.44 s/step
+step 350 mix 0.35 loss 0.2832 (ema 0.1523) kl 0.2756 hid 0.0763 range 0.00e+00 0.44 s/step
+step 400 mix 0.40 loss 0.2334 (ema 0.1642) kl 0.2271 hid 0.0626 range 0.00e+00 0.44 s/step
+step 450 mix 0.45 loss 0.4661 (ema 0.1760) kl 0.4521 hid 0.1402 range 0.00e+00 0.44 s/step
+step 500 mix 0.50 loss 0.2304 (ema 0.1822) kl 0.2243 hid 0.0617 range 0.00e+00 0.44 s/step
+step 550 mix 0.55 loss 0.2316 (ema 0.1882) kl 0.2248 hid 0.0689 range 0.00e+00 0.44 s/step
+step 555: non-finite loss, skipped
+step 600 mix 0.60 loss 0.2908 (ema 0.2202) kl 0.2827 hid 0.0813 range 0.00e+00 0.44 s/step
+step 650 mix 0.65 loss 0.3244 (ema 0.2399) kl 0.3154 hid 0.0900 range 0.00e+00 0.44 s/step
+step 666: non-finite loss, skipped
+step 700 mix 0.70 loss 0.1933 (ema 0.2417) kl 0.1860 hid 0.0731 range 0.00e+00 0.44 s/step
+step 746: non-finite loss, skipped
+step 748: non-finite loss, skipped
+step 750 mix 0.75 loss 0.3506 (ema 0.2843) kl 0.3387 hid 0.1194 range 0.00e+00 0.44 s/step
+step 759: non-finite loss, skipped
+step 776: non-finite loss, skipped
+step 780: non-finite loss, skipped
+step 792: non-finite loss, skipped
+step 796: non-finite loss, skipped
+step 800 mix 0.80 loss 0.2895 (ema 0.3088) kl 0.2774 hid 0.1202 range 0.00e+00 0.44 s/step
+step 802: non-finite loss, skipped
+step 807: non-finite loss, skipped
+step 823: non-finite loss, skipped
+step 838: non-finite loss, skipped
+step 839: non-finite loss, skipped
+step 844: non-finite loss, skipped
+step 845: non-finite loss, skipped
+step 847: non-finite loss, skipped
+step 848: non-finite loss, skipped
+step 849: non-finite loss, skipped
+step 850: non-finite loss, skipped
+step 853: non-finite loss, skipped
+step 855: non-finite loss, skipped
+step 857: non-finite loss, skipped
+step 862: non-finite loss, skipped
+step 867: non-finite loss, skipped
+step 873: non-finite loss, skipped
+step 874: non-finite loss, skipped
+step 875: non-finite loss, skipped
+step 880: non-finite loss, skipped
+step 881: non-finite loss, skipped
+step 883: non-finite loss, skipped
+step 890: non-finite loss, skipped
+step 892: non-finite loss, skipped
+step 894: non-finite loss, skipped
+step 900 mix 0.90 loss 0.3411 (ema 0.3729) kl 0.3272 hid 0.1385 range 0.00e+00 0.43 s/step
+step 901: non-finite loss, skipped
+step 905: non-finite loss, skipped
+step 908: non-finite loss, skipped
+step 913: non-finite loss, skipped
+step 919: non-finite loss, skipped
+step 920: non-finite loss, skipped
+step 921: non-finite loss, skipped
+step 927: non-finite loss, skipped
+step 928: non-finite loss, skipped
+step 929: non-finite loss, skipped
+step 930: non-finite loss, skipped
+step 937: non-finite loss, skipped
+step 938: non-finite loss, skipped
+step 939: non-finite loss, skipped
+step 940: non-finite loss, skipped
+step 945: non-finite loss, skipped
+step 948: non-finite loss, skipped
+step 949: non-finite loss, skipped
+step 950: non-finite loss, skipped
+step 953: non-finite loss, skipped
+step 954: non-finite loss, skipped
+step 973: non-finite loss, skipped
+step 975: non-finite loss, skipped
+step 978: non-finite loss, skipped
+step 983: non-finite loss, skipped
+step 989: non-finite loss, skipped
+step 990: non-finite loss, skipped
+step 991: non-finite loss, skipped
+step 992: non-finite loss, skipped
+step 995: non-finite loss, skipped
+step 998: non-finite loss, skipped
