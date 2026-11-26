@@ -1,0 +1,22 @@
+=== v5_lpp1 Thu Nov 26 01:03:54 AM CET 2026 | GPU 2337 MiB
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 866, 'scale_bits': 50, 'base_bits': 60, 'special_bits': 60, 'special_count': 1, 'hamming_weight': 192}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 195/290 [00:00<00:00, 1939.65it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2031.75it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 9.1 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 866, 'compute_levels': 866, 'levels_per_prime': 1, 'scale_primes': 866, 'log_q': 43360, 'log_qp': 43420, 'n_primes': 868, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 26747.42466700077, 'primes_ms': 140.98619508743286, 'sk_pk_relin_ms': 2022.564854979515, 'galois_ms': 38.29515993595123}}, 29 rotation keys, setup 29.0 s, VRAM {'used_mb': 14261.5625, 'pool_high_mb': 4224.0}
+
+CUDA Runtime Error at: /u/halle/cqin/home_at/cipherchat_v5/build_v5/phantom-src/include/cuda_wrapper.cuh:184
+out of memory cudaMallocAsync(&ptr, n * sizeof(T), stream)
+!!! step v5_lpp1 failed
+=== v5_lpp2 Thu Nov 26 01:04:40 AM CET 2026 | GPU 2337 MiB
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 1151, 'scale_bits': 30, 'base_bits': 60, 'special_bits': 60, 'special_count': 1, 'hamming_weight': 192, 'levels_per_prime': 2, 'prime_bits': 60}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  84%|████████▍ | 245/290 [00:00<00:00, 2438.76it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2562.96it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 6.2 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 1153, 'compute_levels': 1153, 'levels_per_prime': 2, 'scale_primes': 576, 'log_q': 34620, 'log_qp': 34680, 'n_primes': 578, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 5671.091543078423, 'primes_ms': 91.59075891971588, 'sk_pk_relin_ms': 623.0358040332794, 'galois_ms': 19.250851035118103}}, 29 rotation keys, setup 6.4 s, VRAM {'used_mb': 6229.5625, 'pool_high_mb': 2784.0}
+   hotspots (ms): 1 linear: encode + ptmul 32292, 1 linear: rotations 13286, 2 attention: ctmul/cache/pack 1625, 2 attention: rotations 3129, 3 nonlinear 2532, 4 bootstrapping 0, other 0 | ops add 1472 ms/12096, ctmul 2210 ms/1824, rot 16912 ms/18672, encode 20938 ms/29304, ptmac 10650 ms/28872, rescale 484 ms/1206, to_half 7 ms/97, lift 191 ms/454, decrypt 0 ms/1 | VRAM {'used_mb': 7276.25, 'pool_high_mb': 6432.0}
+t=2 ('The'): 72.6 s, level left 2, final residual max_abs 3.33e+19 rel 3.35e+18 cos -0.02548013 mse 1.10e+38 | top1 'illiseconds' vs ' answer' | logit max err 2.09e+01
+   hotspots (ms): 1 linear: encode + ptmul 31794, 1 linear: rotations 13265, 2 attention: ctmul/cache/pack 1577, 2 attention: rotations 3133, 3 nonlinear 2414, 4 bootstrapping 0, other 0 | ops add 1430 ms/12096, ctmul 2179 ms/1824, rot 16842 ms/18696, encode 20491 ms/29256, ptmac 10581 ms/28872, rescale 463 ms/1206, to_half 7 ms/97, lift 191 ms/454, decrypt 0 ms/1 | VRAM {'used_mb': 7468.25, 'pool_high_mb': 8032.0}
+t=3 (' capital'): 68.0 s, level left 2, final residual max_abs 3.27e+19 rel 3.87e+18 cos -0.00072732 mse 1.13e+38 | top1 '">×</' vs ' of' | logit max err 2.13e+01

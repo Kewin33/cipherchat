@@ -1,0 +1,11 @@
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 866, 'scale_bits': 50, 'base_bits': 60, 'special_bits': 60, 'special_count': 1, 'hamming_weight': 192}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  84%|████████▍ | 245/290 [00:00<00:00, 2417.90it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2604.18it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 7.6 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'compute_levels': 866, 'levels': 866, 'log_q': 43360, 'log_qp': 43420, 'n_primes': 868, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 239619.11485409737, 'primes_ms': 129.08647191524506, 'sk_pk_relin_ms': 735.6299160718918, 'galois_ms': 33.307523012161255}}, 29 rotation keys, setup 240.5 s, VRAM {'used_mb': 7507.5625, 'pool_high_mb': 4224.0}
+   hotspots (ms): 1 linear: encode + ptmul 90430, 1 linear: rotations 21930, 2 attention: ctmul/cache/pack 4098, 2 attention: rotations 5172, 3 nonlinear 4950, 4 bootstrapping 0, other 0 | ops add 5604 ms/12096, ctmul 5061 ms/1824, rot 27838 ms/18672, encode 29279 ms/112872, ptmul 53932 ms/112440, rescale 4865 ms/8112, decrypt 0 ms/1 | VRAM {'used_mb': 15763.5625, 'pool_high_mb': 12480.0}
+t=2 ('The'): 148.4 s, level left 2, final residual max_abs 2.24e-04 rel 4.07e-06 cos 1.00000000 mse 1.62e-10 | top1 ' answer' vs ' answer' | logit max err 3.90e-05
+
+CUDA Runtime Error at: /u/halle/cqin/home_at/cipherchat_v5/build_v5/phantom-src/include/cuda_wrapper.cuh:85
+out of memory cudaMallocAsync(&this->ptr_, obj.n_ * sizeof(T), obj.cudaStream_)

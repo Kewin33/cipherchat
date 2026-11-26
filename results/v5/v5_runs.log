@@ -1,0 +1,82 @@
+=== v5_lpp1 Thu Nov 26 01:43:43 AM CET 2026 | GPU 1786 MiB
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 866, 'scale_bits': 50, 'base_bits': 60, 'special_bits': 60, 'special_count': 1, 'hamming_weight': 192}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 268/290 [00:00<00:00, 2656.83it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2762.74it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 5.7 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 866, 'compute_levels': 866, 'levels_per_prime': 1, 'scale_primes': 866, 'log_q': 43360, 'log_qp': 43420, 'n_primes': 868, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 22528.16123199463, 'primes_ms': 142.58179104328156, 'sk_pk_relin_ms': 756.9058901071548, 'galois_ms': 34.01931893825531}}, 29 rotation keys, setup 23.6 s, VRAM {'used_mb': 7020.25, 'pool_high_mb': 4224.0}
+   hotspots (ms): 1 linear: encode + ptmul 49858, 1 linear: rotations 21890, 2 attention: ctmul/cache/pack 2771, 2 attention: rotations 5157, 3 nonlinear 3973, 4 bootstrapping 0, other 0 | ops add 2355 ms/12096, ctmul 4139 ms/1824, rot 27781 ms/18672, encode 27695 ms/29304, ptmac 16736 ms/28872, rescale 4940 ms/8112, decrypt 1 ms/1 | VRAM {'used_mb': 9090.9375, 'pool_high_mb': 9824.0}
+t=2 ('The'): 108.7 s, level left 2, final residual max_abs 6.14e-06 rel 1.79e-07 cos 1.00000000 mse 3.14e-13 | top1 ' answer' vs ' answer' | logit max err 2.50e-06
+   hotspots (ms): 1 linear: encode + ptmul 49705, 1 linear: rotations 21893, 2 attention: ctmul/cache/pack 2758, 2 attention: rotations 5195, 3 nonlinear 3983, 4 bootstrapping 0, other 0 | ops add 2348 ms/12096, ctmul 4144 ms/1824, rot 27822 ms/18696, encode 27547 ms/29256, ptmac 16783 ms/28872, rescale 4889 ms/8112, decrypt 0 ms/1 | VRAM {'used_mb': 9378.9375, 'pool_high_mb': 12288.0}
+t=3 (' capital'): 105.8 s, level left 2, final residual max_abs 2.61e-06 rel 1.85e-07 cos 1.00000000 mse 2.59e-13 | top1 ' of' vs ' of' | logit max err 2.83e-06
+   hotspots (ms): 1 linear: encode + ptmul 49744, 1 linear: rotations 21890, 2 attention: ctmul/cache/pack 2761, 2 attention: rotations 5201, 3 nonlinear 3969, 4 bootstrapping 0, other 0 | ops add 2348 ms/12096, ctmul 4137 ms/1824, rot 27826 ms/18696, encode 27572 ms/29256, ptmac 16781 ms/28872, rescale 4900 ms/8112, decrypt 0 ms/1 | VRAM {'used_mb': 9346.9375, 'pool_high_mb': 12384.0}
+t=4 (' of'): 105.8 s, level left 2, final residual max_abs 3.65e-06 rel 1.41e-07 cos 1.00000000 mse 1.79e-13 | top1 ' the' vs ' the' | logit max err 2.04e-06
+depth used by 24 layers: 864 levels (chain 866)
+=== v5_lpp2 Thu Nov 26 01:49:39 AM CET 2026 | GPU 1786 MiB
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 1151, 'scale_bits': 30, 'base_bits': 60, 'special_bits': 50, 'special_count': 1, 'hamming_weight': 192, 'levels_per_prime': 2, 'prime_bits': 60}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  89%|████████▊ | 257/290 [00:00<00:00, 2543.96it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2682.19it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 5.2 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 1153, 'compute_levels': 1153, 'levels_per_prime': 2, 'scale_primes': 576, 'log_q': 34620, 'log_qp': 34670, 'n_primes': 578, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 5204.038785934448, 'primes_ms': 86.54250597953796, 'sk_pk_relin_ms': 950.7355599403381, 'galois_ms': 18.887284994125366}}, 29 rotation keys, setup 6.3 s, VRAM {'used_mb': 4898.9375, 'pool_high_mb': 2784.0}
+   hotspots (ms): 1 linear: encode + ptmul 31632, 1 linear: rotations 13220, 2 attention: ctmul/cache/pack 1581, 2 attention: rotations 3099, 3 nonlinear 2408, 4 bootstrapping 0, other 0 | ops add 1431 ms/12096, ctmul 2173 ms/1824, rot 16761 ms/18672, encode 20331 ms/29304, ptmac 10580 ms/28872, rescale 465 ms/1206, to_half 7 ms/97, lift 191 ms/454, decrypt 1 ms/1 | VRAM {'used_mb': 6658.9375, 'pool_high_mb': 6432.0}
+t=2 ('The'): 69.4 s, level left 2, final residual max_abs 3.16e-02 rel 6.26e-04 cos 0.99999980 mse 3.83e-06 | top1 ' answer' vs ' answer' | logit max err 1.11e-02
+   hotspots (ms): 1 linear: encode + ptmul 31586, 1 linear: rotations 13211, 2 attention: ctmul/cache/pack 1572, 2 attention: rotations 3119, 3 nonlinear 2405, 4 bootstrapping 0, other 0 | ops add 1429 ms/12096, ctmul 2173 ms/1824, rot 16772 ms/18696, encode 20280 ms/29256, ptmac 10579 ms/28872, rescale 464 ms/1206, to_half 7 ms/97, lift 191 ms/454, decrypt 0 ms/1 | VRAM {'used_mb': 6850.9375, 'pool_high_mb': 8032.0}
+t=3 (' capital'): 66.7 s, level left 2, final residual max_abs 1.14e-02 rel 6.97e-04 cos 0.99999976 mse 3.68e-06 | top1 ' of' vs ' of' | logit max err 1.26e-02
+   hotspots (ms): 1 linear: encode + ptmul 31629, 1 linear: rotations 13224, 2 attention: ctmul/cache/pack 1576, 2 attention: rotations 3122, 3 nonlinear 2419, 4 bootstrapping 0, other 0 | ops add 1430 ms/12096, ctmul 2178 ms/1824, rot 16798 ms/18696, encode 20313 ms/29256, ptmac 10591 ms/28872, rescale 465 ms/1206, to_half 7 ms/97, lift 190 ms/454, decrypt 0 ms/1 | VRAM {'used_mb': 6882.9375, 'pool_high_mb': 8128.0}
+t=4 (' of'): 66.8 s, level left 2, final residual max_abs 3.34e-02 rel 6.35e-04 cos 0.99999980 mse 3.63e-06 | top1 ' the' vs ' the' | logit max err 1.01e-02
+depth used by 24 layers: 1151 levels (chain 1153)
+=== rounding Thu Nov 26 01:53:18 AM CET 2026 | GPU 1786 MiB
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 201, 'scale_bits': 20, 'base_bits': 60, 'special_bits': 50, 'special_count': 1, 'hamming_weight': 192, 'levels_per_prime': 2, 'prime_bits': 40}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 267/290 [00:00<00:00, 2658.70it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2757.59it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 5.2 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 203, 'compute_levels': 203, 'levels_per_prime': 2, 'scale_primes': 101, 'log_q': 4100, 'log_qp': 4150, 'n_primes': 103, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 121.96739399433136, 'primes_ms': 15.365535020828247, 'sk_pk_relin_ms': 739.324070930481, 'galois_ms': 7.7525060176849365}}, 29 rotation keys, setup 1.0 s, VRAM {'used_mb': 2594.9375, 'pool_high_mb': 480.0}
+  t=2 layer  0: level 156 max_abs 4.63e-01 rel 1.05e-01 cos 0.99602191
+  t=2 layer  1: level 108 max_abs 1.72e-01 rel 8.24e-02 cos 0.99662113
+  t=2 layer  2: level 60 max_abs 2.33e-01 rel 7.32e-02 cos 0.99746130
+  t=2 layer  3: level 12 max_abs 1.12e-01 rel 6.49e-02 cos 0.99789146
+   hotspots (ms): 1 linear: encode + ptmul 1975, 1 linear: rotations 353, 2 attention: ctmul/cache/pack 48, 2 attention: rotations 86, 3 nonlinear 72, 4 bootstrapping 0, other 0 | ops add 24 ms/2016, ctmul 56 ms/304, rot 451 ms/3112, encode 1786 ms/4884, ptmac 189 ms/4812, rescale 18 ms/226, to_half 0 ms/17, lift 6 ms/79, decrypt 2 ms/5 | VRAM {'used_mb': 2690.9375, 'pool_high_mb': 1056.0}
+t=2 ('The'): 3.5 s, level left 12, final residual max_abs 1.12e-01 rel 6.49e-02 cos 0.99789146 mse 6.59e-04 | top1 'iếu' vs ' answer' | logit max err 1.79e+01
+depth used by 4 layers: 191 levels (chain 203)
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 201, 'scale_bits': 25, 'base_bits': 60, 'special_bits': 50, 'special_count': 1, 'hamming_weight': 192, 'levels_per_prime': 2, 'prime_bits': 50}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 268/290 [00:00<00:00, 2672.02it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2732.92it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 4.2 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 203, 'compute_levels': 203, 'levels_per_prime': 2, 'scale_primes': 101, 'log_q': 5110, 'log_qp': 5160, 'n_primes': 103, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 121.18176901340485, 'primes_ms': 15.220512986183167, 'sk_pk_relin_ms': 804.1416860818863, 'galois_ms': 7.692003011703491}}, 29 rotation keys, setup 1.0 s, VRAM {'used_mb': 2594.9375, 'pool_high_mb': 480.0}
+  t=2 layer  0: level 156 max_abs 2.02e-03 rel 6.14e-04 cos 0.99999982
+  t=2 layer  1: level 108 max_abs 1.17e-03 rel 5.98e-04 cos 0.99999983
+  t=2 layer  2: level 60 max_abs 1.24e-03 rel 5.72e-04 cos 0.99999986
+  t=2 layer  3: level 12 max_abs 1.73e-03 rel 6.52e-04 cos 0.99999985
+   hotspots (ms): 1 linear: encode + ptmul 1977, 1 linear: rotations 353, 2 attention: ctmul/cache/pack 48, 2 attention: rotations 86, 3 nonlinear 72, 4 bootstrapping 0, other 0 | ops add 25 ms/2016, ctmul 56 ms/304, rot 451 ms/3112, encode 1787 ms/4884, ptmac 189 ms/4812, rescale 18 ms/226, to_half 0 ms/17, lift 6 ms/79, decrypt 2 ms/5 | VRAM {'used_mb': 2690.9375, 'pool_high_mb': 1056.0}
+t=2 ('The'): 3.5 s, level left 12, final residual max_abs 1.73e-03 rel 6.52e-04 cos 0.99999985 mse 6.63e-08 | top1 'iếu' vs ' answer' | logit max err 1.82e+01
+depth used by 4 layers: 191 levels (chain 203)
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 201, 'scale_bits': 30, 'base_bits': 60, 'special_bits': 50, 'special_count': 1, 'hamming_weight': 192, 'levels_per_prime': 2, 'prime_bits': 60}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 220/290 [00:00<00:00, 2198.25it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2378.06it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 4.2 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 203, 'compute_levels': 203, 'levels_per_prime': 2, 'scale_primes': 101, 'log_q': 6120, 'log_qp': 6170, 'n_primes': 103, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 121.68145394325256, 'primes_ms': 15.49894893169403, 'sk_pk_relin_ms': 706.1602820158005, 'galois_ms': 7.712010025978088}}, 29 rotation keys, setup 0.9 s, VRAM {'used_mb': 2594.9375, 'pool_high_mb': 480.0}
+  t=2 layer  0: level 156 max_abs 4.33e-05 rel 1.18e-05 cos 1.00000000
+  t=2 layer  1: level 108 max_abs 2.69e-05 rel 9.59e-06 cos 1.00000000
+  t=2 layer  2: level 60 max_abs 1.49e-05 rel 1.01e-05 cos 1.00000000
+  t=2 layer  3: level 12 max_abs 4.66e-05 rel 1.76e-05 cos 1.00000000
+   hotspots (ms): 1 linear: encode + ptmul 1971, 1 linear: rotations 353, 2 attention: ctmul/cache/pack 47, 2 attention: rotations 86, 3 nonlinear 72, 4 bootstrapping 0, other 0 | ops add 25 ms/2016, ctmul 56 ms/304, rot 451 ms/3112, encode 1782 ms/4884, ptmac 190 ms/4812, rescale 18 ms/226, to_half 0 ms/17, lift 6 ms/79, decrypt 2 ms/5 | VRAM {'used_mb': 2690.9375, 'pool_high_mb': 1056.0}
+t=2 ('The'): 3.5 s, level left 12, final residual max_abs 4.66e-05 rel 1.76e-05 cos 1.00000000 mse 4.82e-11 | top1 'iếu' vs ' answer' | logit max err 1.82e+01
+depth used by 4 layers: 191 levels (chain 203)
+layout {'n': 4096, 'D': 1024, 'R': 4, 'S': 256, 'BABY': 16, 'GIANT': 16, 'BABY_CONV': 2, 'G_CONV': 2, 'T_MAX': 32} | ckks {'logN': 13, 'levels': 146, 'scale_bits': 50, 'base_bits': 60, 'special_bits': 60, 'special_count': 1, 'hamming_weight': 192}
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  93%|█████████▎| 271/290 [00:00<00:00, 2707.29it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 2759.39it/s]
+[transformers] `past_key_values`/`cache_params` are deprecated. Use `cache` instead.
+folded in 4.2 s (n_pub 2, attn norm pos, p 2)
+Generating secret key with hamming weight: 192
+phantom v5: {'slots': 4096, 'levels': 146, 'compute_levels': 146, 'levels_per_prime': 1, 'scale_primes': 146, 'log_q': 7360, 'log_qp': 7420, 'n_primes': 148, 'zero_error': True, 'single_digit_ks': True, 'timing': {'context_ms': 239.4097499847412, 'primes_ms': 21.997497081756592, 'sk_pk_relin_ms': 796.3810039758682, 'galois_ms': 7.804801940917969}}, 29 rotation keys, setup 1.1 s, VRAM {'used_mb': 2818.9375, 'pool_high_mb': 704.0}
+  t=2 layer  0: level 110 max_abs 3.00e-08 rel 1.98e-08 cos 1.00000000
+  t=2 layer  1: level 74 max_abs 1.52e-07 rel 4.39e-08 cos 1.00000000
+  t=2 layer  2: level 38 max_abs 1.36e-07 rel 4.57e-08 cos 1.00000000
+  t=2 layer  3: level 2 max_abs 2.19e-07 rel 6.00e-08 cos 1.00000000
+   hotspots (ms): 1 linear: encode + ptmul 2308, 1 linear: rotations 443, 2 attention: ctmul/cache/pack 65, 2 attention: rotations 110, 3 nonlinear 90, 4 bootstrapping 0, other 0 | ops add 32 ms/2016, ctmul 85 ms/304, rot 569 ms/3112, encode 1900 ms/4884, ptmac 304 ms/4812, rescale 124 ms/1352, decrypt 2 ms/5 | VRAM {'used_mb': 2946.9375, 'pool_high_mb': 1536.0}
+t=2 ('The'): 4.1 s, level left 2, final residual max_abs 2.19e-07 rel 6.00e-08 cos 1.00000000 mse 5.63e-16 | top1 'iếu' vs ' answer' | logit max err 1.82e+01
+depth used by 4 layers: 144 levels (chain 146)
+=== done Thu Nov 26 01:54:12 AM CET 2026

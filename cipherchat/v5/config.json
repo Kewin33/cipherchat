@@ -1,0 +1,14 @@
+{
+  "_doc": "CipherChat v5 - INSECURE upper bound (RLWE error e = 0, no bootstrapping). Model and approximations come from cipherchat/v3/config.json; only the CKKS parameters and the slot layout differ. See docs/V5.md.",
+  "ckks": {
+    "logN": 13,
+    "levels": 866,
+    "scale_bits": 50,
+    "base_bits": 60,
+    "special_bits": 60,
+    "special_count": 1,
+    "hamming_weight": 192,
+    "security_note": "NONE: with e = 0 the secret key is -b/a mod q. No log QP bound applies; these parameters are not secure for any N."
+  },
+  "layout": {"baby": 16, "baby_conv": 2, "rotation_keys": "small"}
+}

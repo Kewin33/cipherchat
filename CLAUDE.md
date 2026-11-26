@@ -8,9 +8,10 @@ kleinen Transformer nur auf Ciphertexts. Single Source of Truth für Vision und 
 - `docs/HANDOVER.md` – Übergabe des MVP (v1): Invarianten, Weight-Folding, Slot-Layouts, OpenFHE-Fallen, Protokoll.
 - `docs/RESEARCH_LOG.md` – Stand der v2-Forschung (schnellere Engine, Additions-Modell), Messwerte, offene Punkte.
 - `docs/V3.md` – v3: Qwen2.5-0.5B nicht-interaktiv unter CKKS mit Bootstrapping auf der GPU (Design, Messwerte, Fallen).
+- `docs/V5.md` – v5: unsichere Obergrenze (e = 0, kein Bootstrapping): was Bootstrapping und Sicherheit in v3 kosten.
 - `graphify-out/GRAPH_REPORT.md` – Architektur-Überblick aus dem Knowledge Graph (siehe unten).
 
-## Drei Generationen im Code
+## Generationen im Code
 - **v1** (MVP, unverändert lauffähig): `cipherchat/{model,reference,fhe_common,fhe_engine,client_crypto}.py`, `server/`, `client/`, `train.py`.
 - **v2** (Forschung): `cipherchat/v2/` – `layout.py` (generalisiertes BSGS, Slot-Layouts), `engine.py`
   (gleiche Engine auf `NumpyBackend` = exakte Slot-Simulation und `OpenFHEBackend`), `model.py` (CipherFormer2),
@@ -20,6 +21,10 @@ kleinen Transformer nur auf Ciphertexts. Single Source of Truth für Vision und 
   `fold.py` (Gewichte für die Engine), `engine.py` (Engine3 auf `NumpyBackend` / `PhantomBackend`), `service.py`,
   `fhe/` (C++/CUDA: `bench_m1.cu`, pybind-Modul `v3fhe` über PhantomFHE + NEXUS-Bootstrapping); Training `train_v3.py`,
   Server `server/app_v3.py`, Tests `scripts/v3_*.py`. `client/app.py` schaltet zwischen v1/v2/v3 um (`run_demo_all.sh`).
+- **v5** (NICHT SICHER, Messinstrument, `docs/V5.md`): v3-Modell mit RLWE-Fehler e = 0 und ohne Bootstrapping –
+  `cipherchat/v5/` (`engine.py` Engine5 mit Layout nach N, `fhe/patch_phantom.py` gepatchte Phantom-Kopie hinter
+  Makros, `fhe/src/pyv5fhe.cu` Modul `v5fhe`), Skripte `scripts/v5_*`; remote eigenes Verzeichnis `~/cipherchat_v5`
+  (`scripts/v5_sync.sh`), damit `~/cipherchat` unberührt bleibt.
 
 ## Umgebung
 - FHE nur mit Python 3.12 auf Linux x86_64 (OpenFHE-Wheel). Windows-Rechner: nur numpy-Simulation und Doku.

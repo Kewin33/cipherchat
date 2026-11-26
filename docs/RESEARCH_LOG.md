@@ -144,3 +144,28 @@ ein neueres nvcc als das installierte 12.0).
   hochgerechnet, nicht gemessen).
 - Speculative Decoding / Multi-Token-Prediction mit clientseitigem Drafting (Leakage der Akzeptanzlänge beachten).
 - Mehrere Sessions gleichzeitig (Key-Tags), Batched Prefill, Rotation-Key-Kompression.
+
+## 6. v5: Obergrenze ohne Fehlerterm (26.11.2026, NICHT SICHER)
+
+Frage: Wie viel Laufzeit und Qualität von v3 (Qwen2.5-0.5B, nicht-interaktiv, RTX 5080) entfallen auf Bootstrapping
+und Sicherheitsparameter? v5 setzt dazu den RLWE-Fehlerterm auf `e = 0`. Das ist unsicher, der geheime Schlüssel folgt
+aus dem öffentlichen. Mit `e = 0` rechnet v5 das ganze Modell auf einer 866-Ebenen-Kette ohne Bootstrapping
+(N = 2¹³, Key-Switching mit einer Ziffer). Details und alle Zahlen: `docs/V5.md`, `results/v5/`.
+
+| at-10-1-4, 3 Token | s/Token | rel. Fehler | Logit-Fehler |
+|---|---|---|---|
+| v3 (sicher, Bootstrapping) | 32 | 2,7·10⁻³ | 3·10⁻² |
+| v3-Parameter mit e = 0 | 31 | identisch | identisch |
+| v5-A: e = 0, kein Bootstrapping, 866 × 50-Bit-Primzahlen | 106 | 1,8·10⁻⁷ | 3·10⁻⁶ |
+| v5-B: wie A, 2 Ebenen pro 60-Bit-Primzahl (Δ = 2³⁰) | 67 | 7·10⁻⁴ | 1·10⁻² |
+
+Erkenntnisse:
+- e selbst kostet weder Zeit noch messbare Genauigkeit. Es wirkt über die Sicherheitsgrenze für log QP und über das
+  Key-Switching: Mit e ≠ 0 wären die Schlüssel für eine 866-Ebenen-Kette 1,8–20 GB groß, *pro Schlüssel*.
+- Ohne Bootstrapping wird v3 langsamer, nicht schneller: Alle Operationen kosten proportional zur Kettenlänge (im
+  Mittel ~433 Primzahlen statt 2–11). Bootstrapping ist bei 864 Ebenen die billigere Art, Ebenen zu bekommen.
+- Die Verschlüsselung kostet keine Modellqualität; der Verlust (Perplexität 31 → 45) steckt in den Näherungen.
+- Bei Δ = 2⁵⁰ ist der Rescale-Rundungsfehler bedeutungslos: Eine Simulation mit nur der Primzahl-Abweichung trifft die
+  GPU auf drei Stellen. Unterhalb von 2³⁰ dominiert er und skaliert mit 1/Δ.
+- Nebenbefund für v3: Der Pack-Schritt der Attention (große Zähler × Klartexte ~10⁻¹⁰) verliert Genauigkeit. Mit
+  exp(−log κ) in der Potenz sinkt der v5-Fehler von 1,3·10⁻⁵ auf 1,8·10⁻⁷. Für v3 noch nicht geprüft.
